@@ -1,4 +1,4 @@
-import { AsyncPipe, JsonPipe }                                                   from '@angular/common';
+import { AsyncPipe }                                                             from '@angular/common';
 import { Component, DestroyRef, inject, OnInit }                                 from '@angular/core';
 import { takeUntilDestroyed }                                                    from '@angular/core/rxjs-interop';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
@@ -17,7 +17,6 @@ import { BehaviorSubject, combineLatestWith, map, take } from 'rxjs';
 import { UserService }                  from '@core/user/user.service';
 import { displayWithFn, filterByValue } from '@core/utils';
 import { fuseAnimations }               from '@fuse/animations';
-import { PageHeaderComponent }          from '@layout/components/page-header/page-header.component';
 import { trackByFn }                    from '@libs/ui/utils/utils';
 import { Board, Member }                from '@modules/admin/apps/scrumboard/models/scrumboard.models';
 import { ScrumboardService }            from '@modules/admin/apps/scrumboard/services/scrumboard.service';
@@ -31,13 +30,11 @@ import { IUser }                        from '@modules/admin/user/profile/interf
         ReactiveFormsModule,
         MatFormFieldModule,
         TranslocoDirective,
-        PageHeaderComponent,
         MatAutocompleteTrigger,
         MatAutocomplete,
         MatOption,
         AsyncPipe,
         MatInput,
-        JsonPipe,
         MatIcon,
         MatButton,
         MatIconButton,

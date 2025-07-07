@@ -1,28 +1,25 @@
-import { AsyncPipe, JsonPipe }                                           from '@angular/common';
+import { AsyncPipe }                                                     from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { RouterLink }                                                    from '@angular/router';
-import { MatAnchor, MatIconButton }                                      from '@angular/material/button';
 import { MatIcon }                                                       from '@angular/material/icon';
 
 import { TranslocoDirective }         from '@ngneat/transloco';
 import { BehaviorSubject, takeUntil } from 'rxjs';
-
-import { FuseCardComponent }       from '../../../../../../../@fuse/components/card';
-import { FuseMasonryComponent }    from '../../../../../../../@fuse/components/masonry';
-import { FuseMediaWatcherService } from '../../../../../../../@fuse/services/media-watcher';
-import { PageHeaderComponent }     from '@layout/components/page-header/page-header.component';
-import { SubComponent }            from '@layout/components/sub-component/sub-component';
-import { trackByFn }               from '@libs/ui/utils/utils';
-import { HlmSkeletonComponent }    from '@libs/ui/ui-skeleton-helm/src';
-import { IAlbum }                  from '@modules/admin/apps/albums/interfaces/album.interface';
-import { AlbumCardComponent }      from '@modules/admin/apps/albums/components/album-card/album-card.component';
-import { AlbumService }            from '@modules/admin/apps/albums/album.service';
+import { FuseMasonryComponent }       from '../../../../../../../@fuse/components/masonry';
+import { FuseMediaWatcherService }    from '../../../../../../../@fuse/services/media-watcher';
+import { PageHeaderComponent }        from '@layout/components/page-header/page-header.component';
+import { SubComponent }               from '@layout/components/sub-component/sub-component';
+import { trackByFn }                  from '@libs/ui/utils/utils';
+import { HlmSkeletonComponent }       from '@libs/ui/ui-skeleton-helm/src';
+import { IAlbum }                     from '@modules/admin/apps/albums/interfaces/album.interface';
+import { AlbumCardComponent }         from '@modules/admin/apps/albums/components/album-card/album-card.component';
+import { AlbumService }               from '@modules/admin/apps/albums/album.service';
 
 @Component({
     selector       : 'app-albums-list',
     standalone     : true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports        : [ TranslocoDirective, PageHeaderComponent, FuseCardComponent, MatIconButton, MatIcon, MatAnchor, RouterLink, AlbumCardComponent, AsyncPipe, JsonPipe, FuseMasonryComponent, HlmSkeletonComponent ],
+    imports: [ TranslocoDirective, PageHeaderComponent, MatIcon, RouterLink, AlbumCardComponent, AsyncPipe, FuseMasonryComponent, HlmSkeletonComponent ],
     templateUrl    : './list.component.html'
 })
 export class ListComponent extends SubComponent implements OnInit {

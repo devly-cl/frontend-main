@@ -1,13 +1,11 @@
 import { Component }                                                             from '@angular/core';
-import { BenefitsTableComponent }                                                from '@modules/admin/admin/benefits/components/benefits-table/benefits-table.component';
 import { PageHeaderComponent }                                                   from '@layout/components/page-header/page-header.component';
 import { TranslocoDirective, TranslocoPipe, TranslocoService }                   from '@ngneat/transloco';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule }                                                    from '@angular/material/form-field';
 import { MatInput }                                                              from '@angular/material/input';
-import { FuseCardComponent }                                                     from '../../../../../../../@fuse/components/card';
 import { MatDatepicker, MatDatepickerInput, MatDatepickerToggle }                from '@angular/material/datepicker';
-import { AsyncPipe, JsonPipe, NgIf }                                             from '@angular/common';
+import { AsyncPipe, NgIf }                                                       from '@angular/common';
 import { MatButton }                                                             from '@angular/material/button';
 import { MatOption }                                                             from '@angular/material/core';
 import { MatSelect }                                                             from '@angular/material/select';
@@ -19,20 +17,17 @@ import { MatProgressSpinner }                                                   
 import { Notyf }                                                                 from 'notyf';
 import { MemberService }                                                         from '@modules/admin/user/member.service';
 import { fuseAnimations }                                                        from '../../../../../../../@fuse/animations';
-import { MatDivider }                                                            from '@angular/material/divider';
 import { CdkTextareaAutosize }                                                   from '@angular/cdk/text-field';
 
 @Component({
     selector   : 'app-personal-information',
     standalone : true,
     imports    : [
-        BenefitsTableComponent,
         PageHeaderComponent,
         TranslocoDirective,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInput,
-        FuseCardComponent,
         MatDatepicker,
         MatDatepickerInput,
         MatDatepickerToggle,
@@ -42,9 +37,7 @@ import { CdkTextareaAutosize }                                                  
         MatOption,
         MatSelect,
         AsyncPipe,
-        JsonPipe,
         MatProgressSpinner,
-        MatDivider,
         CdkTextareaAutosize
     ],
     animations : fuseAnimations,

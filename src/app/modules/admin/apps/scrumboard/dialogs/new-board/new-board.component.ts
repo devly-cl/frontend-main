@@ -7,11 +7,10 @@ import { MatIcon }                                                              
 import { MatButton, MatIconButton }                                              from '@angular/material/button';
 import { TranslocoDirective, TranslocoPipe, TranslocoService }                   from '@ngneat/transloco';
 import { MatProgressSpinner }                                                    from '@angular/material/progress-spinner';
-import { AsyncPipe, JsonPipe, NgIf }                                             from '@angular/common';
+import { AsyncPipe, NgIf }                                                       from '@angular/common';
 import { Notyf }                                                                 from 'notyf';
 import { MatDialogClose, MatDialogRef }                                          from '@angular/material/dialog';
-import { MatAutocomplete, MatAutocompleteTrigger, MatOption }                    from '@angular/material/autocomplete';
-import { MatSelectAutocompleteComponent }                                        from '@libs/ui/mat-select-autocomplete/mat-select-autocomplete.component';
+import { MatOption }                                                             from '@angular/material/autocomplete';
 import { ScrumboardService }                                                     from '@modules/admin/apps/scrumboard/services/scrumboard.service';
 import { BehaviorSubject, map, take, takeUntil, withLatestFrom }                 from 'rxjs';
 import { SubComponent }                                                          from '@layout/components/sub-component/sub-component';
@@ -24,7 +23,7 @@ import { UserService }                                                          
 @Component({
     selector   : 'app-new-board',
     standalone : true,
-    imports    : [
+    imports: [
         CdkTextareaAutosize,
         MatLabel,
         MatFormField,
@@ -37,11 +36,7 @@ import { UserService }                                                          
         MatProgressSpinner,
         NgIf,
         MatError,
-        MatAutocompleteTrigger,
-        MatAutocomplete,
         MatOption,
-        MatSelectAutocompleteComponent,
-        JsonPipe,
         MatDialogClose,
         MatSelect,
         AsyncPipe,

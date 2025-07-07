@@ -12,8 +12,6 @@ import { BenefitCategoryService }                  from '@modules/admin/admin/be
 import { Selector }                                from '../../model/selector';
 import { AsyncPipe, NgForOf }                      from '@angular/common';
 import { MatAutocomplete, MatAutocompleteTrigger } from '@angular/material/autocomplete';
-import { MatIcon }                                 from '@angular/material/icon';
-import { MatIconButton }                           from '@angular/material/button';
 import { MatInput }                                from '@angular/material/input';
 import { displayWithFn, filterByValue }            from '@core/utils';
 import { MatProgressSpinner }                      from '@angular/material/progress-spinner';
@@ -32,8 +30,6 @@ import { BenefitCategoryMapper }                   from '@modules/admin/admin/be
         MatAutocomplete,
         NgForOf,
         MatAutocompleteTrigger,
-        MatIcon,
-        MatIconButton,
         MatInput,
         ReactiveFormsModule,
         MatProgressSpinner,

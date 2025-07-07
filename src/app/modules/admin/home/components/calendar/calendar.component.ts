@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
-import { DatePipe, NgIf }                                                 from '@angular/common';
+import { DatePipe }                                                       from '@angular/common';
 import { MatDialog }                                                      from '@angular/material/dialog';
 
 import { TranslocoDirective }                                       from '@ngneat/transloco';
@@ -16,7 +16,7 @@ import { DateTime }            from 'luxon';
 @Component({
     selector     : 'home-calendar',
     standalone   : true,
-    imports      : [ CalendarMonthModule, CalendarCommonModule, NgIf, TranslocoDirective, DatePipe, EventCardComponent ],
+    imports: [ CalendarMonthModule, CalendarCommonModule, TranslocoDirective, DatePipe, EventCardComponent ],
     templateUrl  : './calendar.component.html',
     encapsulation: ViewEncapsulation.None,
     styleUrls    : [ './calendar.component.scss' ],

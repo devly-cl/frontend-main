@@ -9,7 +9,6 @@ import { MatTooltip }                                                           
 import { DatePipe }                                                                                from '@angular/common';
 import { FuseMasonryComponent }                                                                    from '../../../../../../../@fuse/components/masonry';
 import { trackByFn }                                                                               from '@libs/ui/utils/utils';
-import { AlbumCardComponent }                                                                      from '@modules/admin/apps/albums/components/album-card/album-card.component';
 import { ImgLoaderDirective }                                                                      from '@layout/directives/img-loader.directive';
 import { IAlbumImage }                                                                             from '@modules/admin/apps/albums/interfaces/album-image.interface';
 import { LightgalleryModule }                                                                      from 'lightgallery/angular';
@@ -34,7 +33,6 @@ import { UserAvatarComponent }                                                  
         MatTooltip,
         DatePipe,
         FuseMasonryComponent,
-        AlbumCardComponent,
         ImgLoaderDirective,
         LightgalleryModule,
         TranslocoPipe,

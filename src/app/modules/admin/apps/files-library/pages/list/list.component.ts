@@ -1,18 +1,17 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { AsyncPipe, DOCUMENT, I18nPluralPipe, NgClass, NgForOf, NgIf }                                 from '@angular/common';
+import { AsyncPipe, DOCUMENT, NgClass, NgForOf, NgIf }                                                 from '@angular/common';
 import { FormsModule, ReactiveFormsModule, UntypedFormControl }                                        from '@angular/forms';
 import { MatDrawer, MatDrawerContainer, MatDrawerContent }                                             from '@angular/material/sidenav';
 import { MatFormField, MatPrefix }                                                                     from '@angular/material/form-field';
 import { MatIcon }                                                                                     from '@angular/material/icon';
 import { MatInput }                                                                                    from '@angular/material/input';
-import { ActivatedRoute, Router, RouterLink, RouterOutlet }                                            from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet }                                                        from '@angular/router';
 
 import { TranslocoDirective }                              from '@ngneat/transloco';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
 import { PageHeaderComponent }     from '@layout/components/page-header/page-header.component';
-import { BenefitsTableComponent }  from '@modules/admin/admin/benefits/components/benefits-table/benefits-table.component';
 import { trackByFn }               from '@libs/ui/utils/utils';
 import { fakerES }                 from '@faker-js/faker';
 import { ImgFallbackDirective }    from '@core/directives/imgFallback.directive';
@@ -22,13 +21,11 @@ import { ImgFallbackDirective }    from '@core/directives/imgFallback.directive'
     selector       : 'app-list',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
-    imports        : [
-        BenefitsTableComponent,
+    imports: [
         PageHeaderComponent,
         TranslocoDirective,
         AsyncPipe,
         FormsModule,
-        I18nPluralPipe,
         MatDrawer,
         MatDrawerContainer,
         MatDrawerContent,
@@ -40,7 +37,6 @@ import { ImgFallbackDirective }    from '@core/directives/imgFallback.directive'
         NgIf,
         RouterOutlet,
         NgClass,
-        RouterLink,
         ReactiveFormsModule,
         ImgFallbackDirective
     ],

@@ -1,7 +1,6 @@
 import { Component, OnInit }            from '@angular/core';
 import { MatIconAnchor, MatIconButton } from '@angular/material/button';
 import { MatDialog }                    from '@angular/material/dialog';
-import { MatDivider }                   from '@angular/material/divider';
 import { MatFormFieldModule }           from '@angular/material/form-field';
 import { MatIcon }                      from '@angular/material/icon';
 import { MatInputModule }               from '@angular/material/input';
@@ -18,7 +17,7 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, mergeMap, of, swit
 import { INews }                                                                        from '@modules/admin/news/domain/interfaces/news.interface';
 import { Pageable }                                                                     from '@core/interfaces/pageable';
 import { takeUntilDestroyed }                                                           from '@angular/core/rxjs-interop';
-import { AsyncPipe, DatePipe, JsonPipe }                                                from '@angular/common';
+import { DatePipe }                                                                     from '@angular/common';
 import { NewsService }                                                                  from '@modules/admin/admin/news/news.service';
 import { MatTableModule }                                                               from '@angular/material/table';
 import { MatSort, MatSortHeader }                                                       from '@angular/material/sort';
@@ -27,7 +26,7 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators }            
 @Component({
     selector   : 'app-list',
     standalone : true,
-    imports    : [
+    imports: [
         PageHeaderComponent,
         TranslocoDirective,
         MatIcon,
@@ -37,10 +36,7 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators }            
         MatIconButton,
         MatInputModule,
         MatTableModule,
-        MatDivider,
         Table,
-        AsyncPipe,
-        JsonPipe,
         DatePipe,
         MatSortHeader,
         MatSort,

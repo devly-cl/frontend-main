@@ -1,23 +1,18 @@
 import { Component }                                           from '@angular/core';
 import { RouterOutlet }                                        from '@angular/router';
 import { TranslocoDirective, TranslocoPipe, TranslocoService } from '@ngneat/transloco';
-
-import { PageHeaderComponent }    from '@layout/components/page-header/page-header.component';
-import { DrawerContentComponent } from '@shared/components/drawer-listing/components/drawer-content.component';
-import { DrawerHeaderComponent }  from '@shared/components/drawer-listing/components/drawer-header.component';
-import { DrawerListingComponent } from '@shared/components/drawer-listing/drawer-listing.component';
-import { PanelType }              from '@shared/components/drawer-listing/panel.type';
+import { DrawerContentComponent }                              from '@shared/components/drawer-listing/components/drawer-content.component';
+import { DrawerListingComponent }                              from '@shared/components/drawer-listing/drawer-listing.component';
+import { PanelType }                                           from '@shared/components/drawer-listing/panel.type';
 
 @Component({
     selector   : 'app-benefits',
     standalone : true,
-    imports    : [
+    imports: [
         RouterOutlet,
         DrawerListingComponent,
-        PageHeaderComponent,
         TranslocoDirective,
         DrawerContentComponent,
-        DrawerHeaderComponent,
         TranslocoPipe
     ],
     templateUrl: './benefits.component.html'

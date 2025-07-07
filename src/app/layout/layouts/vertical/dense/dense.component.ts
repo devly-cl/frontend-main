@@ -15,9 +15,6 @@ import { CompanySelectorComponent }                                from '@layout
 import { NavigationService }                                       from 'app/core/navigation/navigation.service';
 import { Navigation }                                              from 'app/core/navigation/navigation.types';
 import { LanguagesComponent }                                      from 'app/layout/components/languages/languages.component';
-import { MessagesComponent }                                       from 'app/layout/components/messages/messages.component';
-import { NotificationsComponent }                                  from 'app/layout/components/notifications/notifications.component';
-import { QuickChatComponent }                                      from 'app/layout/components/quick-chat/quick-chat.component';
 import { SearchComponent }                                         from 'app/layout/components/search/search.component';
 import { ShortcutsComponent }                                      from 'app/layout/components/shortcuts/shortcuts.component';
 import { UserComponent }                                           from 'app/layout/components/user/user.component';
@@ -28,7 +25,7 @@ import { UserComponent }                                           from 'app/lay
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
-    imports        : [
+    imports: [
         FuseLoadingBarComponent,
         FuseVerticalNavigationComponent,
         MatButtonModule,
@@ -37,11 +34,8 @@ import { UserComponent }                                           from 'app/lay
         FuseFullscreenComponent,
         SearchComponent,
         ShortcutsComponent,
-        MessagesComponent,
-        NotificationsComponent,
         UserComponent,
         RouterOutlet,
-        QuickChatComponent,
         CompanySelectorComponent,
         AsyncPipe,
     ],

@@ -6,7 +6,7 @@
         <button
             [matMenuTriggerFor]="companySelectorMenu"
             mat-button>
-            <ng-container *ngTemplateOutlet="companyTemplateFull; context: {$implicit: authService.activeCompany}"></ng-container>
+            <ng-container *ngTemplateOutlet="companyTemplateFull; context: {$implicit: authService.activeCompany()}"></ng-container>
         </button>
 
         <mat-menu
@@ -15,7 +15,7 @@
             @for (company of companies; track company.id) {
                 <button
                     (click)="setActiveCompany(company.id)"
-                    [disabled]="company.id === authService.activeCompany?.id"
+                    [disabled]="company.id === authService.activeCompany()?.id"
                     mat-menu-item>
         <span class="flex items-center">
             <ng-container *ngTemplateOutlet="companyTemplate; context: {$implicit: company}"></ng-container>
@@ -35,7 +35,7 @@
             }
         </mat-menu>
     } @else {
-        <ng-container *ngTemplateOutlet="companyTemplateFull; context: {$implicit: authService.activeCompany}"></ng-container>
+        <ng-container *ngTemplateOutlet="companyTemplateFull; context: {$implicit: authService.activeCompany()}"></ng-container>
     }
 }
 

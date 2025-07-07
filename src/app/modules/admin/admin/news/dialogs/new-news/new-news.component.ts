@@ -9,7 +9,7 @@ import { MatFormFieldModule }                                                   
 import { MatIcon }                                                               from '@angular/material/icon';
 import { MatInputModule }                                                        from '@angular/material/input';
 import { MatProgressSpinner }                                                    from '@angular/material/progress-spinner';
-import { JsonPipe, NgIf }                                                        from '@angular/common';
+import { NgIf }                                                                  from '@angular/common';
 import { QuillEditorComponent }                                                  from 'ngx-quill';
 import { DropzoneMaterialModule }                                                from '@ngx-dropzone/material';
 import { MatChipsModule }                                                        from '@angular/material/chips';
@@ -23,7 +23,7 @@ import { imageCompressor }                                                      
 @Component({
     selector   : 'app-new-news',
     standalone : true,
-    imports    : [
+    imports: [
         ReactiveFormsModule,
         CdkTextareaAutosize,
         MatButtonModule,
@@ -40,7 +40,6 @@ import { imageCompressor }                                                      
         DropzoneMaterialModule,
         ImageUploadPreviewComponent,
         NewsCategoriesSelectorComponent,
-        JsonPipe,
         TranslocoPipe
     ],
     templateUrl: './new-news.component.html'
@@ -76,8 +75,8 @@ export class NewNewsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.title = this._translateService.translate('admin.news.new.title');
-        this.saveText = this._translateService.translate('admin.news.new.create');
+        this.title = this._translateService.translate('admin.news.create.title');
+        this.saveText = this._translateService.translate('admin.news.create.create');
 
         this.newsForm = this._formBuilder.group({
             headline     : [ undefined, [ Validators.required, Validators.minLength(10) ] ],

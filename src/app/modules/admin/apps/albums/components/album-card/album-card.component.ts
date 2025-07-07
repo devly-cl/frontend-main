@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { DatePipe, NgIf }                            from '@angular/common';
 import { MatIcon }                                   from '@angular/material/icon';
-import { MatBadge }                                  from '@angular/material/badge';
 
 import { IAlbum }             from '@modules/admin/apps/albums/interfaces/album.interface';
 import { ImgLoaderDirective } from '@layout/directives/img-loader.directive';
@@ -12,7 +11,6 @@ import { ImgLoaderDirective } from '@layout/directives/img-loader.directive';
     imports        : [
         NgIf,
         MatIcon,
-        MatBadge,
         DatePipe,
         ImgLoaderDirective
     ],

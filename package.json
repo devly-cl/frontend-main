@@ -15,18 +15,18 @@
         "sentry:sourcemaps" : "sentry-cli sourcemaps inject --org synergiq --project javascript-angular ./dist/fuse/browser && sentry-cli sourcemaps upload --org synergiq --project javascript-angular ./dist/fuse/browser"
     },
     "dependencies" : {
-        "@angular/animations" : "18.0.5",
-        "@angular/cdk" : "18.0.5",
-        "@angular/common" : "18.0.5",
-        "@angular/compiler" : "18.0.5",
-        "@angular/core" : "18.0.5",
-        "@angular/forms" : "18.0.5",
-        "@angular/google-maps" : "^18.0.5",
-        "@angular/material" : "18.0.5",
-        "@angular/material-luxon-adapter" : "18.0.5",
-        "@angular/platform-browser" : "18.0.5",
-        "@angular/platform-browser-dynamic" : "18.0.5",
-        "@angular/router" : "18.0.5",
+        "@angular/animations" : "20.0.5",
+        "@angular/cdk" : "20.0.5",
+        "@angular/common" : "20.0.5",
+        "@angular/compiler" : "20.0.5",
+        "@angular/core" : "20.0.5",
+        "@angular/forms" : "20.0.5",
+        "@angular/google-maps" : "^20.0.5",
+        "@angular/material" : "20.0.5",
+        "@angular/material-luxon-adapter" : "20.0.5",
+        "@angular/platform-browser" : "20.0.5",
+        "@angular/platform-browser-dynamic" : "20.0.5",
+        "@angular/router" : "20.0.5",
         "@ionic/storage-angular" : "^4.0.0",
         "@ngneat/transloco" : "6.0.4",
         "@ngx-dropzone/cdk" : "^18.1.0",
@@ -63,9 +63,9 @@
         "zone.js" : "0.14.7"
     },
     "devDependencies" : {
-        "@angular-devkit/build-angular" : "18.0.6",
-        "@angular/cli" : "18.0.6",
-        "@angular/compiler-cli" : "18.0.5",
+        "@angular-devkit/build-angular" : "20.0.5",
+        "@angular/cli" : "20.0.5",
+        "@angular/compiler-cli" : "20.0.5",
         "@faker-js/faker" : "^8.4.1",
         "@tailwindcss/typography" : "0.5.13",
         "@types/chroma-js" : "2.4.4",
@@ -89,6 +89,6 @@
         "tailwind-merge" : "^2.3.0",
         "tailwindcss" : "3.4.4",
         "tailwindcss-animate" : "^1.0.7",
-        "typescript" : "5.4.5"
+        "typescript" : "5.8.3"
     }
 }

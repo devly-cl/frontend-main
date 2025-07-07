@@ -9,7 +9,6 @@ import { PageHeaderComponent }        from '@layout/components/page-header/page-
 import { trackByFn }                  from '@libs/ui/utils/utils';
 import { MemberService }              from '@modules/admin/user/member.service';
 import { MatInput }                   from '@angular/material/input';
-import { NgClass }                    from '@angular/common';
 import { MatButton, MatIconButton }   from '@angular/material/button';
 import { MatTooltip }                 from '@angular/material/tooltip';
 import { Country }                    from '@modules/admin/apps/contacts/contacts.types';
@@ -36,7 +35,6 @@ import { Notyf }                      from 'notyf';
         MatFormFieldModule,
         MatInput,
         ReactiveFormsModule,
-        NgClass,
         MatIconButton,
         MatTooltip,
         MatButton,
@@ -78,7 +76,7 @@ export class ContactsComponent extends SubComponent {
                 next: (user: IUser) => {
                     this.user = user;
 
-                    const currentCompanyId = this._authService.activeCompany.id;
+                    const currentCompanyId = this._authService.activeCompany().id;
                     const contacts = user.contacts.filter((contact) => contact.companyId === currentCompanyId);
 
                     const emails = contacts.filter((contact) => contact.type === ContactTypeEnum.EMAIL);
@@ -111,7 +109,7 @@ export class ContactsComponent extends SubComponent {
     }
 
     public submit() {
-        const currentCompanyId = this._authService.activeCompany.id;
+        const currentCompanyId = this._authService.activeCompany().id;
 
         this.form.disable();
 

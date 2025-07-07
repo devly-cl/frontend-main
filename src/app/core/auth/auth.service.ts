@@ -1,11 +1,11 @@
 import { HttpClient }                                                                 from '@angular/common/http';
-import { inject, Injectable }                                                         from '@angular/core';
+import { inject, Injectable, signal }                                                 from '@angular/core';
 import { AuthUtils }                                                                  from 'app/core/auth/auth.utils';
 import { UserService }                                                                from 'app/core/user/user.service';
 import { catchError, lastValueFrom, map, Observable, of, switchMap, tap, throwError } from 'rxjs';
-import { ICompany }                                                                   from '@core/domain/interfaces/company.interface';
 import { CreateUserDto }                                                              from '@core/auth/domain/create-user.dto';
 import { IUser }                                                                      from '@modules/admin/user/profile/interfaces/user.interface';
+import { ICompanyUser }                                                               from '@core/domain/interfaces/company-user.interface';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -13,19 +13,7 @@ export class AuthService {
     private _httpClient = inject(HttpClient);
     private _userService = inject(UserService);
 
-    private _activeCompany: ICompany = undefined;
-
-    // -----------------------------------------------------------------------------------------------------
-    // @ Accessors
-    // -----------------------------------------------------------------------------------------------------
-
-    get activeCompany(): ICompany {
-        return this._activeCompany;
-    }
-
-    set activeCompany(company: ICompany) {
-        this._activeCompany = company;
-    }
+    activeCompany = signal<ICompanyUser>(undefined);
 
     get accessToken(): string {
         return localStorage.getItem('accessToken') ?? '';
@@ -88,7 +76,7 @@ export class AuthService {
 
                 // Store the user on the user service
                 this._userService.user = response.user;
-                this.activeCompany = response.company;
+                this.activeCompany.set(response.companyUser);
 
                 // Return a new observable with the response
                 return of(response);
@@ -126,7 +114,7 @@ export class AuthService {
 
                     // Store the user on the user service
                     this._userService.user = response.user;
-                    this.activeCompany = response.company;
+                    this.activeCompany.set(response.companyUser);
 
                     // Return true
                     return of(true);
@@ -224,7 +212,7 @@ export class AuthService {
             .pipe(tap((response) => {
                 this.accessToken = response.accessToken;
                 this._userService.user = response.user;
-                this.activeCompany = response.company;
+                this.activeCompany.set(response.companyUser);
             }));
     }
 

@@ -1,13 +1,11 @@
 import { Component, OnInit }                                                                  from '@angular/core';
 import { CdkTextareaAutosize }                                                                from '@angular/cdk/text-field';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { JsonPipe, NgIf, TitleCasePipe }                                                      from '@angular/common';
+import { NgIf, TitleCasePipe }                                                                from '@angular/common';
 import { MatButton, MatIconButton }                                                           from '@angular/material/button';
-import { MatCard }                                                                            from '@angular/material/card';
-import { MatChipRemove, MatChipRow }                                                          from '@angular/material/chips';
 import { MatOption }                                                                          from '@angular/material/core';
 import { MatDialogRef }                                                                       from '@angular/material/dialog';
-import { MatFormField, MatLabel, MatSuffix }                                                  from '@angular/material/form-field';
+import { MatFormField, MatLabel }                                                             from '@angular/material/form-field';
 import { MatIcon }                                                                            from '@angular/material/icon';
 import { MatInput }                                                                           from '@angular/material/input';
 import { MatProgressSpinner }                                                                 from '@angular/material/progress-spinner';
@@ -32,16 +30,12 @@ import { UsersService } from '@modules/admin/admin/users/users.service';
         DropzoneMaterialModule,
         FormsModule,
         MatButton,
-        MatCard,
-        MatChipRemove,
-        MatChipRow,
         MatFormField,
         MatIcon,
         MatIconButton,
         MatInput,
         MatLabel,
         MatProgressSpinner,
-        MatSuffix,
         NgIf,
         ReactiveFormsModule,
         TranslocoDirective,
@@ -49,7 +43,6 @@ import { UsersService } from '@modules/admin/admin/users/users.service';
         MatSelect,
         MatSelectTrigger,
         TitleCasePipe,
-        JsonPipe,
         TranslocoPipe
     ],
     templateUrl: './member-new.component.html'

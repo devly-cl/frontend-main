@@ -1,12 +1,9 @@
-import { AsyncPipe }                from '@angular/common';
-import { Component }                from '@angular/core';
-import { ReactiveFormsModule }      from '@angular/forms';
-import { MatButton, MatIconButton } from '@angular/material/button';
-import { MatFormField }             from '@angular/material/form-field';
-import { MatIcon }                  from '@angular/material/icon';
-import { MatInput }                 from '@angular/material/input';
-import { MatProgressSpinner }       from '@angular/material/progress-spinner';
-import { MatTooltip }               from '@angular/material/tooltip';
+import { AsyncPipe }           from '@angular/common';
+import { Component }           from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconButton }       from '@angular/material/button';
+import { MatIcon }             from '@angular/material/icon';
+import { MatTooltip }          from '@angular/material/tooltip';
 
 import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 
@@ -19,14 +16,10 @@ import { lastValueFrom }       from 'rxjs';
 @Component({
     selector   : 'app-list',
     standalone : true,
-    imports    : [
+    imports: [
         TranslocoDirective,
         ReactiveFormsModule,
-        MatFormField,
-        MatProgressSpinner,
         MatIcon,
-        MatButton,
-        MatInput,
         MatIconButton,
         AsyncPipe,
         MatTooltip,

@@ -1,9 +1,7 @@
-import { Component }                           from '@angular/core';
-import { MatAnchor, MatButton, MatIconAnchor } from '@angular/material/button';
-import { MatIcon }                             from '@angular/material/icon';
-import { MatDialog }                           from '@angular/material/dialog';
-import { MatTooltip }                          from '@angular/material/tooltip';
-import { RouterLink }                          from '@angular/router';
+import { Component }  from '@angular/core';
+import { MatIcon }    from '@angular/material/icon';
+import { MatDialog }  from '@angular/material/dialog';
+import { MatTooltip } from '@angular/material/tooltip';
 
 import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 import { mergeMap, take }                    from 'rxjs';
@@ -15,23 +13,18 @@ import { IEvent }                  from '@modules/admin/home/interface/event.int
 import { EventsTableComponent }    from '../../components/events-table/events-table.component';
 import { EventsService }           from '../../events.service';
 import { NewOrEditComponent }      from '../../dialogs/new-or-edit/new-or-edit.component';
-import { MatDivider }              from '@angular/material/divider';
 
 @Component({
     selector   : 'app-list',
     standalone : true,
     imports    : [
         EventsTableComponent,
-        MatAnchor,
-        MatButton,
         MatIcon,
-        MatIconAnchor,
         MatTooltip,
         PageHeaderComponent,
-        RouterLink,
         TranslocoDirective,
         TranslocoPipe,
-        MatDivider,
+
     ],
     templateUrl: './list.component.html',
 })

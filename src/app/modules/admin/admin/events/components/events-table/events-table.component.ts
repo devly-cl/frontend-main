@@ -1,38 +1,9 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import {
-    MatCell,
-    MatCellDef,
-    MatColumnDef,
-    MatFooterCell,
-    MatFooterCellDef,
-    MatFooterRow,
-    MatFooterRowDef,
-    MatHeaderCell,
-    MatHeaderCellDef,
-    MatHeaderRow,
-    MatHeaderRowDef,
-    MatRow,
-    MatRowDef,
-    MatTable,
-    MatTableDataSource
-}                                                                    from '@angular/material/table';
-import {
-    MatSort,
-    MatSortHeader,
-    Sort
-}                                                                    from '@angular/material/sort';
-import {
-    DatePipe,
-    NgClass
-}                                                                    from '@angular/common';
-import {
-    MatButton,
-    MatIconAnchor,
-    MatIconButton
-}                                                                    from '@angular/material/button';
-import { MatIcon }                                                   from '@angular/material/icon';
-import { RouterLink }                                                from '@angular/router';
-import { MatTooltip }                                                from '@angular/material/tooltip';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output }                                                                                          from '@angular/core';
+import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderCellDef, MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef, MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatSort, MatSortHeader, Sort }                                                                                                                       from '@angular/material/sort';
+import { MatIconAnchor, MatIconButton }                                                                                                                       from '@angular/material/button';
+import { MatIcon }                                                                                                                                            from '@angular/material/icon';
+import { MatTooltip }                                                                                                                                         from '@angular/material/tooltip';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { TranslocoDirective }             from '@ngneat/transloco';
@@ -44,16 +15,10 @@ import { IEvent }                        from '@modules/admin/home/interface/eve
 @Component({
     selector   : 'events-table',
     standalone : true,
-    imports    : [
-        DatePipe,
-        MatButton,
+    imports: [
         MatCell,
         MatCellDef,
         MatColumnDef,
-        MatFooterCell,
-        MatFooterCellDef,
-        MatFooterRow,
-        MatFooterRowDef,
         MatHeaderCell,
         MatHeaderCellDef,
         MatHeaderRow,
@@ -67,8 +32,6 @@ import { IEvent }                        from '@modules/admin/home/interface/eve
         MatSortHeader,
         MatTable,
         MatTooltip,
-        NgClass,
-        RouterLink,
         TranslocoDirective
     ],
     templateUrl: './events-table.component.html'

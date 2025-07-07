@@ -1,4 +1,4 @@
-import { DatePipe, NgClass, NgFor, NgIf }                                                              from '@angular/common';
+import { DatePipe, NgFor, NgIf }                                                                       from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule }                                                                             from '@angular/material/button';
 import { MatIconModule }                                                                               from '@angular/material/icon';
@@ -6,9 +6,7 @@ import { MatDrawerToggleResult }                                                
 import { MatTooltip }                                                                                  from '@angular/material/tooltip';
 import { RouterLink }                                                                                  from '@angular/router';
 
-import { Subject, takeUntil } from 'rxjs';
-
-import { FuseFindByKeyPipe }     from '@fuse/pipes/find-by-key/find-by-key.pipe';
+import { Subject, takeUntil }    from 'rxjs';
 import { Country, UserContact }  from '@modules/admin/apps/contacts/contacts.types';
 import { ContactsListComponent } from '@modules/admin/apps/contacts/pages/list/list.component';
 import { ContactsService }       from '@modules/admin/apps/contacts/contacts.service';
@@ -19,7 +17,7 @@ import { ContactsService }       from '@modules/admin/apps/contacts/contacts.ser
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
-    imports        : [ NgIf, MatButtonModule, RouterLink, MatIconModule, NgFor, NgClass, FuseFindByKeyPipe, DatePipe, MatTooltip ],
+    imports: [ NgIf, MatButtonModule, RouterLink, MatIconModule, NgFor, DatePipe, MatTooltip ],
 })
 export class ContactsDetailsComponent implements OnInit, OnDestroy {
     contact: UserContact;

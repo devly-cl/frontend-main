@@ -5,21 +5,18 @@ import { MatIcon }                                                             f
 import { MatProgressBar }                                                      from '@angular/material/progress-bar';
 import { ActivatedRoute, RouterLink }                                          from '@angular/router';
 
-import { TranslocoDirective } from '@ngneat/transloco';
-import Splide                 from '@splidejs/splide';
-
-import { SwiperDirective }      from '@core/directives/swiper/swiper.directive';
-import { relativeTime }         from '@core/utils';
-import { FuseCardComponent }    from '@fuse/components/card';
-import { HlmSkeletonComponent } from '@libs/ui/ui-skeleton-helm/src';
-import { INews }                from '@modules/admin/news/domain/interfaces/news.interface';
-import { IUser }                from '@modules/admin/user/profile/interfaces/user.interface';
-import { IEconomicIndicator }   from '@modules/admin/home/interface/economic-indicator.interface';
-import { ShortcutsComponent }   from '@modules/admin/home/components/shortcuts/shortcuts.component';
-import { CalendarComponent }    from '@modules/admin/home/components/calendar/calendar.component';
-import { BgPatternsComponent }  from '@shared/components/bg-patterns/bg-patterns.component';
-import { MatDivider }           from '@angular/material/divider';
-import { NoticesComponent }     from '@modules/admin/home/components/notices/notices.component';
+import { TranslocoDirective }  from '@ngneat/transloco';
+import Splide                  from '@splidejs/splide';
+import { relativeTime }        from '@core/utils';
+import { FuseCardComponent }   from '@fuse/components/card';
+import { INews }               from '@modules/admin/news/domain/interfaces/news.interface';
+import { IUser }               from '@modules/admin/user/profile/interfaces/user.interface';
+import { IEconomicIndicator }  from '@modules/admin/home/interface/economic-indicator.interface';
+import { ShortcutsComponent }  from '@modules/admin/home/components/shortcuts/shortcuts.component';
+import { CalendarComponent }   from '@modules/admin/home/components/calendar/calendar.component';
+import { BgPatternsComponent } from '@shared/components/bg-patterns/bg-patterns.component';
+import { MatDivider }          from '@angular/material/divider';
+import { NoticesComponent }    from '@modules/admin/home/components/notices/notices.component';
 
 @Component({
     selector     : 'home',
@@ -31,7 +28,6 @@ import { NoticesComponent }     from '@modules/admin/home/components/notices/not
         TranslocoDirective,
         MatIcon,
         MatButton,
-        SwiperDirective,
         FuseCardComponent,
         MatAnchor,
         RouterLink,
@@ -42,7 +38,6 @@ import { NoticesComponent }     from '@modules/admin/home/components/notices/not
         MatProgressBar,
         CalendarComponent,
         UpperCasePipe,
-        HlmSkeletonComponent,
         BgPatternsComponent,
         MatDivider,
         NoticesComponent

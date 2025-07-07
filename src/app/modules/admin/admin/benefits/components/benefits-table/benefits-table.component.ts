@@ -10,7 +10,6 @@ import { Benefit }                              from '@modules/admin/admin/benef
 import { Table }                                from '../../../../../../shared/components/table/table.component';
 import { MatIcon }                              from '@angular/material/icon';
 import { MatIconButton }                        from '@angular/material/button';
-import { MatTooltip }                           from '@angular/material/tooltip';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { FuseConfirmationService }              from '../../../../../../../@fuse/services/confirmation';
 import { BenefitsService }                      from '@modules/admin/admin/benefits/services/benefits.service';
@@ -19,7 +18,7 @@ import { BenefitsService }                      from '@modules/admin/admin/benef
     selector       : 'benefit-table',
     standalone     : true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports        : [
+    imports: [
         Table,
         TranslocoDirective,
         MatColumnDef,
@@ -31,7 +30,6 @@ import { BenefitsService }                      from '@modules/admin/admin/benef
         MatSortHeader,
         MatIcon,
         MatIconButton,
-        MatTooltip,
         MatMenuTrigger,
         MatMenu,
         MatMenuItem

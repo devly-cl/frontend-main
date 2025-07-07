@@ -4,19 +4,17 @@ import { PageHeaderComponent }                                                fr
 import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderCellDef } from '@angular/material/table';
 import { MatIcon }                                                            from '@angular/material/icon';
 import { MatIconButton }                                                      from '@angular/material/button';
-import { MatMenu, MatMenuItem, MatMenuTrigger }                               from '@angular/material/menu';
 import { MatSort, MatSortHeader }                                             from '@angular/material/sort';
 import { Table }                                                              from '../../../../../../../shared/components/table/table.component';
 import { BenefitCategory }                                                    from '@modules/admin/admin/benefits/models/benefit-category';
 import { BenefitCategoryService }                                             from '@modules/admin/admin/benefits/services/benefit-category.service';
 import { AbstractListComponent }                                              from '../../../../../../../shared/components/abstracts/abstract-list.component';
-import { AsyncPipe, JsonPipe }                                                from '@angular/common';
 import { MatTooltip }                                                         from '@angular/material/tooltip';
 
 @Component({
     selector   : 'app-list',
     standalone : true,
-    imports    : [
+    imports: [
         TranslocoDirective,
         PageHeaderComponent,
         MatCell,
@@ -25,15 +23,10 @@ import { MatTooltip }                                                         fr
         MatHeaderCell,
         MatIcon,
         MatIconButton,
-        MatMenu,
-        MatMenuItem,
         MatSort,
         MatSortHeader,
         Table,
         MatHeaderCellDef,
-        MatMenuTrigger,
-        AsyncPipe,
-        JsonPipe,
         MatTooltip
     ],
     templateUrl: './list.component.html'

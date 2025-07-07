@@ -1,13 +1,11 @@
 import { CdkTextareaAutosize }                                                                from '@angular/cdk/text-field';
-import { JsonPipe }                                                                           from '@angular/common';
 import { Component, ElementRef, ViewChild }                                                   from '@angular/core';
 import { FormsModule, ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatButton, MatIconButton }                                                           from '@angular/material/button';
+import { MatButton }                                                                          from '@angular/material/button';
 import { MatFormFieldModule, MatLabel, MatPrefix }                                            from '@angular/material/form-field';
 import { MatIcon }                                                                            from '@angular/material/icon';
 import { MatInput }                                                                           from '@angular/material/input';
 import { MatProgressSpinner }                                                                 from '@angular/material/progress-spinner';
-import { MatTooltip }                                                                         from '@angular/material/tooltip';
 
 import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 
@@ -20,22 +18,19 @@ import { lastValueFrom }       from 'rxjs';
 @Component({
     selector   : 'app-create',
     standalone : true,
-    imports    : [
+    imports: [
         FormsModule,
         MatButton,
         MatFormFieldModule,
         MatIcon,
-        MatIconButton,
         MatInput,
         MatLabel,
         MatPrefix,
-        MatTooltip,
         PageHeaderComponent,
         TranslocoDirective,
         ReactiveFormsModule,
         CdkTextareaAutosize,
         TranslocoPipe,
-        JsonPipe,
         MatProgressSpinner
     ],
     animations : fuseAnimations,

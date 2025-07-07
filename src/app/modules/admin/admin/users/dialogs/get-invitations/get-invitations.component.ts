@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit }         from '@angular/core';
-import { CommonModule, JsonPipe, NgIf }         from '@angular/common';
+import { CommonModule }                         from '@angular/common';
 import { MatDialogModule, MatDialogRef }        from '@angular/material/dialog';
 import { UsersService }                         from '@modules/admin/admin/users/users.service';
 import { MatButtonModule }                      from '@angular/material/button';
@@ -16,15 +16,13 @@ import { CompanyUserInvite }        from '@modules/admin/admin/users/model/compa
 @Component({
     selector   : 'app-get-invitations',
     standalone : true,
-    imports    : [
+    imports: [
         CommonModule,
         MatButtonModule,
         MatDialogModule,
-        NgIf,
         Table,
         MatTableModule,
         TranslocoDirective,
-        JsonPipe,
         MatIconModule
     ],
     templateUrl: './get-invitations.component.html'

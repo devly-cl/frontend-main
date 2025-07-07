@@ -1,12 +1,11 @@
 import { AfterViewInit, Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild, ViewEncapsulation } from '@angular/core';
-import { CommonModule, NgOptimizedImage }                                                 from '@angular/common';
-import { CdkScrollable }                                                                  from '@angular/cdk/overlay';
+import { CommonModule }                                                                   from '@angular/common';
 import { MatButtonModule }                                                                from '@angular/material/button';
 import { MatDividerModule }                                                               from '@angular/material/divider';
 import { MatIconModule }                                                                  from '@angular/material/icon';
 import { MatInputModule }                                                                 from '@angular/material/input';
 import { MatTooltipModule }                                                               from '@angular/material/tooltip';
-import { ActivatedRoute, RouterLink }                                                     from '@angular/router';
+import { ActivatedRoute }                                                                 from '@angular/router';
 
 import { TranslocoDirective }                       from '@ngneat/transloco';
 import { LightgalleryModule }                       from 'lightgallery/angular';
@@ -17,16 +16,16 @@ import { FuseCardComponent } from '@fuse/components/card';
 import { SwiperDirective }   from '@core/directives/swiper/swiper.directive';
 import { UserService }       from '@core/user/user.service';
 
-import { INews }                                      from '../../domain/interfaces/news.interface';
-import { LightGallery }                               from 'lightgallery/lightgallery';
-import lightGallery                                   from 'lightgallery';
-import { QuillViewComponent, QuillViewHTMLComponent } from 'ngx-quill';
-import { PageDetailHeaderComponent }                  from '../../../../../shared/components/page-detail-header/page-detail-header.component';
+import { INews }                     from '../../domain/interfaces/news.interface';
+import { LightGallery }              from 'lightgallery/lightgallery';
+import lightGallery                  from 'lightgallery';
+import { QuillViewComponent }        from 'ngx-quill';
+import { PageDetailHeaderComponent } from '../../../../../shared/components/page-detail-header/page-detail-header.component';
 
 @Component({
     selector     : 'app-single-news',
     standalone   : true,
-    imports      : [ CommonModule, MatButtonModule, RouterLink, MatIconModule, CdkScrollable, MatDividerModule, MatTooltipModule, FuseCardComponent, MatInputModule, SwiperDirective, NgOptimizedImage, TranslocoDirective, LightgalleryModule, QuillViewHTMLComponent, QuillViewComponent, PageDetailHeaderComponent ],
+    imports: [ CommonModule, MatButtonModule, MatIconModule, MatDividerModule, MatTooltipModule, FuseCardComponent, MatInputModule, SwiperDirective, TranslocoDirective, LightgalleryModule, QuillViewComponent, PageDetailHeaderComponent ],
     encapsulation: ViewEncapsulation.None,
     templateUrl  : './details.component.html',
     schemas      : [ CUSTOM_ELEMENTS_SCHEMA ]

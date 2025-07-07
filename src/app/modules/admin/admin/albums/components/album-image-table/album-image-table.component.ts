@@ -9,7 +9,6 @@ import {
 }                            from '@angular/core';
 import {
     MatButton,
-    MatIconAnchor,
     MatIconButton
 }                            from '@angular/material/button';
 import {
@@ -37,7 +36,6 @@ import {
 }                            from '@angular/material/sort';
 import { MatIcon }           from '@angular/material/icon';
 import { MatTooltip }        from '@angular/material/tooltip';
-import { RouterLink }        from '@angular/router';
 
 import { Observable, Subject, takeUntil } from 'rxjs';
 
@@ -49,7 +47,7 @@ import { IAlbumImage }        from '@modules/admin/apps/albums/interfaces/album-
 @Component({
     selector   : 'album-image-table',
     standalone : true,
-    imports    : [
+    imports: [
         DatePipe,
         MatButton,
         MatCellDef,
@@ -63,7 +61,6 @@ import { IAlbumImage }        from '@modules/admin/apps/albums/interfaces/album-
         MatHeaderRowDef,
         MatIconButton,
         MatIcon,
-        MatIconAnchor,
         MatFooterCellDef,
         MatFooterCell,
         MatRow,
@@ -73,7 +70,6 @@ import { IAlbumImage }        from '@modules/admin/apps/albums/interfaces/album-
         MatTable,
         MatTooltip,
         NgClass,
-        RouterLink,
         TranslocoDirective,
         MatNoDataRow
     ],

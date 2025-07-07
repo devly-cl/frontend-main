@@ -4,7 +4,6 @@ import { MatIcon }                                                              
 import { MatButton, MatIconButton }                                                    from '@angular/material/button';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators }       from '@angular/forms';
 import { MatFormField, MatLabel, MatSuffix }                                           from '@angular/material/form-field';
-import { MatInput }                                                                    from '@angular/material/input';
 import { MatChipRow }                                                                  from '@angular/material/chips';
 import { DropzoneMaterialModule }                                                      from '@ngx-dropzone/material';
 import { ImageUploadPreviewComponent }                                                 from '@modules/admin/admin/albums/components/image-upload-preview/image-upload-preview.component';
@@ -15,20 +14,18 @@ import { MAT_DIALOG_DATA, MatDialogRef }                                        
 import { AlbumsService }                                                               from '@modules/admin/admin/albums/albums.service';
 import { IAlbum }                                                                      from '@modules/admin/apps/albums/interfaces/album.interface';
 import { MatProgressSpinner }                                                          from '@angular/material/progress-spinner';
-import { NgIf }                                                                        from '@angular/common';
 import { asyncScheduler, catchError, forkJoin, Observable, scheduled, takeUntil, tap } from 'rxjs';
 import { IAlbumImage }                                                                 from '@modules/admin/apps/albums/interfaces/album-image.interface';
 
 @Component({
     selector   : 'app-upload-images',
     standalone : true,
-    imports    : [
+    imports: [
         TranslocoDirective,
         MatIcon,
         MatIconButton,
         ReactiveFormsModule,
         MatFormField,
-        MatInput,
         MatLabel,
         MatChipRow,
         DropzoneMaterialModule,
@@ -37,8 +34,7 @@ import { IAlbumImage }                                                          
         MatCard,
         MatSuffix,
         MatButton,
-        MatProgressSpinner,
-        NgIf
+        MatProgressSpinner
     ],
     templateUrl: './upload-images.component.html',
 })

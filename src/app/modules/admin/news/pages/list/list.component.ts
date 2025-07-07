@@ -1,20 +1,18 @@
-import { Component, OnInit }                                from '@angular/core';
-import { AsyncPipe, NgClass, NgForOf, NgIf, UpperCasePipe } from '@angular/common';
-import { takeUntilDestroyed }                               from '@angular/core/rxjs-interop';
-import { ActivatedRoute, RouterLink, RouterOutlet }         from '@angular/router';
-import { MatButtonModule }                                  from '@angular/material/button';
-import { MatIconModule }                                    from '@angular/material/icon';
-import { MatTooltipModule }                                 from '@angular/material/tooltip';
+import { Component, OnInit }  from '@angular/core';
+import { AsyncPipe, NgIf }    from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ActivatedRoute }     from '@angular/router';
+import { MatButtonModule }    from '@angular/material/button';
+import { MatIconModule }      from '@angular/material/icon';
+import { MatTooltipModule }   from '@angular/material/tooltip';
 
 import { TranslocoDirective }                                    from '@ngneat/transloco';
 import { distinctUntilChanged, lastValueFrom, Observable, skip } from 'rxjs';
 
-import { Page }              from '@core/interfaces/page';
-import { fuseAnimations }    from '@fuse/animations';
-import { FuseCardComponent } from '@fuse/components/card';
-import { FuseFindByKeyPipe } from '@fuse/pipes/find-by-key/find-by-key.pipe';
-import { NewsService }       from '@modules/admin/news/news.service';
-import { INewsCategory }     from '@modules/admin/news/domain/interfaces/category.interface';
+import { Page }           from '@core/interfaces/page';
+import { fuseAnimations } from '@fuse/animations';
+import { NewsService }    from '@modules/admin/news/news.service';
+import { INewsCategory }  from '@modules/admin/news/domain/interfaces/category.interface';
 
 import { INews }                     from '../../domain/interfaces/news.interface';
 import { NewsListHeaderComponent }   from '@modules/admin/news/components/news-list-header/news-list-header.component';
@@ -24,7 +22,7 @@ import { NewsCategoryCardComponent } from '@modules/admin/news/components/news-c
 @Component({
     selector   : 'app-news-all',
     standalone : true,
-    imports    : [ RouterOutlet, TranslocoDirective, MatIconModule, NgIf, UpperCasePipe, FuseFindByKeyPipe, NgClass, NgForOf, MatTooltipModule, MatButtonModule, RouterLink, FuseCardComponent, AsyncPipe, NewsListHeaderComponent, NewsCardComponent, NewsCategoryCardComponent ],
+    imports: [ TranslocoDirective, MatIconModule, NgIf, MatTooltipModule, MatButtonModule, AsyncPipe, NewsListHeaderComponent, NewsCardComponent, NewsCategoryCardComponent ],
     templateUrl: './list.component.html',
     animations : fuseAnimations
 })

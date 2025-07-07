@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, ViewEncapsulation } from '@angular/core';
-import { MatButton, MatIconButton }                                      from '@angular/material/button';
+import { MatButton }                                                     from '@angular/material/button';
 import { MatMenu, MatMenuItem, MatMenuTrigger }                          from '@angular/material/menu';
-import { AsyncPipe, JsonPipe, NgForOf, NgIf, NgTemplateOutlet }          from '@angular/common';
+import { AsyncPipe, NgIf, NgTemplateOutlet }                             from '@angular/common';
 
 import { firstValueFrom } from 'rxjs';
 
@@ -15,17 +15,14 @@ import { MatIcon }     from '@angular/material/icon';
     encapsulation  : ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone     : true,
-    imports        : [
-        MatIconButton,
+    imports: [
         MatMenu,
         MatMenuItem,
-        NgForOf,
         NgTemplateOutlet,
         MatMenuTrigger,
         AsyncPipe,
         NgIf,
         MatIcon,
-        JsonPipe,
         MatButton
     ],
 })

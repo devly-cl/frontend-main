@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit }                                             from '@angular/core';
-import { JsonPipe, NgIf }                                                        from '@angular/common';
+import { NgIf }                                                                  from '@angular/common';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatButton, MatIconButton }                                              from '@angular/material/button';
 import { MatChipRemove, MatChipRow }                                             from '@angular/material/chips';
@@ -23,12 +23,11 @@ import { IAlbum }                                 from '@modules/admin/apps/albu
 @Component({
     selector   : 'app-new',
     standalone : true,
-    imports    : [
+    imports: [
         CdkTextareaAutosize,
         DropzoneCdkModule,
         DropzoneMaterialModule,
         ImageUploadPreviewComponent,
-        JsonPipe,
         MatButton,
         MatCard,
         MatChipRemove,

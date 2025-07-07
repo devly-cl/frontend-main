@@ -2,7 +2,7 @@ import { AsyncPipe, TitleCasePipe }               from '@angular/common';
 import { Component, OnInit }                      from '@angular/core';
 import { takeUntilDestroyed }                     from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule }       from '@angular/forms';
-import { MatIconAnchor, MatIconButton }           from '@angular/material/button';
+import { MatIconButton }                          from '@angular/material/button';
 import { MatDialog }                              from '@angular/material/dialog';
 import { MatFormFieldModule, MatHint }            from '@angular/material/form-field';
 import { MatIcon }                                from '@angular/material/icon';
@@ -22,12 +22,11 @@ import { CompanyUser }             from '@modules/admin/admin/users/model/compan
 import { MemberNewComponent }      from '@modules/admin/admin/users/dialogs/member-new/member-new.component';
 import { GetInvitationsComponent } from './dialogs/get-invitations/get-invitations.component';
 import { Page }                    from '@core/interfaces/page';
-import { MatDivider }              from '@angular/material/divider';
 
 @Component({
     selector   : 'app-users',
     standalone : true,
-    imports    : [
+    imports: [
         PageHeaderComponent,
         TranslocoDirective,
         MatFormFieldModule,
@@ -38,11 +37,9 @@ import { MatDivider }              from '@angular/material/divider';
         MatSelectTrigger,
         MatOption,
         TitleCasePipe,
-        MatIconAnchor,
         MatTooltip,
         ReactiveFormsModule,
         AsyncPipe,
-        MatDivider,
         MatHint
     ],
     templateUrl: './users.component.html'

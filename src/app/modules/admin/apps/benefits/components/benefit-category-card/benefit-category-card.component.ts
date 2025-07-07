@@ -1,4 +1,3 @@
-import { UpperCasePipe }                             from '@angular/common';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterLink }                                from '@angular/router';
 
@@ -8,10 +7,9 @@ import { DeltaToHtmlPipe }   from '@core/pipe/delta-to-html.pipe';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports        : [
+    imports: [
         RouterLink,
         FuseCardComponent,
-        UpperCasePipe,
         DeltaToHtmlPipe
     ],
     selector       : 'benefit-category-card',

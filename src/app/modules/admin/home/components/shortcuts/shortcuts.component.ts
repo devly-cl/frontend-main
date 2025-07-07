@@ -1,7 +1,7 @@
-import { JsonPipe, NgIf, NgTemplateOutlet } from '@angular/common';
-import { Component }                        from '@angular/core';
-import { MatIcon }                          from '@angular/material/icon';
-import { RouterLink }                       from '@angular/router';
+import { NgIf, NgTemplateOutlet } from '@angular/common';
+import { Component }              from '@angular/core';
+import { MatIcon }                from '@angular/material/icon';
+import { RouterLink }             from '@angular/router';
 
 import { TranslocoDirective } from '@ngneat/transloco';
 
@@ -10,7 +10,7 @@ import { Shortcut } from '@modules/admin/home/components/shortcuts/shortcut.type
 @Component({
     selector   : 'home-shortcuts',
     standalone : true,
-    imports    : [ TranslocoDirective, JsonPipe, MatIcon, NgIf, RouterLink, NgTemplateOutlet ],
+    imports: [ TranslocoDirective, MatIcon, NgIf, RouterLink, NgTemplateOutlet ],
     templateUrl: './shortcuts.component.html'
 })
 export class ShortcutsComponent {

@@ -1,6 +1,5 @@
 import { Component, Input }    from '@angular/core';
 import { FuseCardComponent }   from '../../../../../../@fuse/components/card';
-import { MatAnchor }           from '@angular/material/button';
 import { NgIf, UpperCasePipe } from '@angular/common';
 import { RouterLink }          from '@angular/router';
 import { relativeTime }        from '@core/utils';
@@ -13,7 +12,6 @@ import { MatTooltip }          from '@angular/material/tooltip';
     standalone : true,
     imports    : [
         FuseCardComponent,
-        MatAnchor,
         UpperCasePipe,
         RouterLink,
         NgIf,

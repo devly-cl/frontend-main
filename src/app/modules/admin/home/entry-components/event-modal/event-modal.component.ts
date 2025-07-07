@@ -1,25 +1,21 @@
 import { AfterViewInit, Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef }                                          from '@angular/material/dialog';
 import { IEvent }                                                                 from '@modules/admin/home/interface/event.interface';
-import { MatButton, MatFabButton, MatIconButton }                                 from '@angular/material/button';
-import { GoogleMapsModule, MapAdvancedMarker }                                    from '@angular/google-maps';
+import { MatButton, MatIconButton }                                               from '@angular/material/button';
+import { GoogleMapsModule }                                                       from '@angular/google-maps';
 import { MatIcon }                                                                from '@angular/material/icon';
 import { LeafletMouseEvent, map, Map, marker, tileLayer }                         from 'leaflet';
-import { DatePipe }                                                               from '@angular/common';
 import { DateTime }                                                               from 'luxon';
 import { DEFAULT_DATETIME_TIME_OPTIONS }                                          from '@core/constants';
 
 @Component({
     selector   : 'app-event-modal',
     standalone : true,
-    imports    : [
+    imports: [
         MatButton,
         GoogleMapsModule,
-        MapAdvancedMarker,
         MatIcon,
-        MatFabButton,
         MatIconButton,
-        DatePipe,
     ],
     templateUrl: './event-modal.component.html',
     styleUrls  : [ './event-modal.component.scss' ],

@@ -4,7 +4,6 @@ import { PageHeaderComponent }                                                fr
 import { MatCell, MatCellDef, MatColumnDef, MatHeaderCell, MatHeaderCellDef } from '@angular/material/table';
 import { MatIcon }                                                            from '@angular/material/icon';
 import { MatIconButton }                                                      from '@angular/material/button';
-import { MatMenu, MatMenuItem, MatMenuTrigger }                               from '@angular/material/menu';
 import { MatSort, MatSortHeader }                                             from '@angular/material/sort';
 import { Table }                                                              from '../../../../../../../shared/components/table/table.component';
 import { BenefitCompany }                                                     from '@modules/admin/admin/benefits/models/benefit-company';
@@ -16,7 +15,7 @@ import { MatTooltip }                                                         fr
     selector       : 'app-list',
     standalone     : true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports        : [
+    imports: [
         TranslocoDirective,
         PageHeaderComponent,
         MatCell,
@@ -25,13 +24,10 @@ import { MatTooltip }                                                         fr
         MatHeaderCell,
         MatIcon,
         MatIconButton,
-        MatMenu,
-        MatMenuItem,
         MatSort,
         MatSortHeader,
         Table,
         MatHeaderCellDef,
-        MatMenuTrigger,
         MatTooltip
     ],
     templateUrl    : './list.component.html'

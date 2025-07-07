@@ -11,8 +11,6 @@ import { MatInputModule }                                                       
 import { DropzoneMaterialModule }                                                from '@ngx-dropzone/material';
 import { DropzoneCdkModule }                                                     from '@ngx-dropzone/cdk';
 import { MatChipsModule }                                                        from '@angular/material/chips';
-import { ImageUploadPreviewComponent }                                           from '@modules/admin/admin/benefits/components/image-upload-preview/image-upload-preview.component';
-import { MatCard }                                                               from '@angular/material/card';
 import { MatProgressSpinner }                                                    from '@angular/material/progress-spinner';
 import { NgIf }                                                                  from '@angular/common';
 import { Notyf }                                                                 from 'notyf';
@@ -20,7 +18,7 @@ import { Notyf }                                                                
 @Component({
     selector       : 'app-category-new',
     standalone     : true,
-    imports        : [
+    imports: [
         TranslocoDirective,
         MatIconButton,
         MatIcon,
@@ -31,8 +29,6 @@ import { Notyf }                                                                
         DropzoneCdkModule,
         DropzoneMaterialModule,
         MatChipsModule,
-        ImageUploadPreviewComponent,
-        MatCard,
         MatButton,
         MatProgressSpinner,
         NgIf

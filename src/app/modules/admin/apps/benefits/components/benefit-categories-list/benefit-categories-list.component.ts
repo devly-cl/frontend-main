@@ -1,6 +1,6 @@
 import { Component, inject, Input }                     from '@angular/core';
 import { BenefitCategoryService }                       from '@modules/admin/admin/benefits/services/benefit-category.service';
-import { AsyncPipe, JsonPipe, NgTemplateOutlet }        from '@angular/common';
+import { AsyncPipe, NgTemplateOutlet }                  from '@angular/common';
 import { ActivatedRoute, RouterLink, RouterLinkActive } from '@angular/router';
 import { BehaviorSubject, firstValueFrom }              from 'rxjs';
 import { BenefitCategory }                              from '@modules/admin/admin/benefits/models/benefit-category';
@@ -8,12 +8,11 @@ import { BenefitCategory }                              from '@modules/admin/adm
 @Component({
     selector   : 'benefit-categories-list',
     standalone : true,
-    imports    : [
+    imports: [
         AsyncPipe,
         RouterLink,
         RouterLinkActive,
-        NgTemplateOutlet,
-        JsonPipe
+        NgTemplateOutlet
     ],
     templateUrl: './benefit-categories-list.component.html'
 })

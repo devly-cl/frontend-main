@@ -1,9 +1,8 @@
-import { Component }                           from '@angular/core';
-import { MatAnchor, MatButton, MatIconAnchor } from '@angular/material/button';
-import { MatDialog }                           from '@angular/material/dialog';
-import { MatIcon }                             from '@angular/material/icon';
-import { MatTooltip }                          from '@angular/material/tooltip';
-import { RouterLink }                          from '@angular/router';
+import { Component }     from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
+import { MatDialog }     from '@angular/material/dialog';
+import { MatIcon }       from '@angular/material/icon';
+import { MatTooltip }    from '@angular/material/tooltip';
 
 import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
 
@@ -19,17 +18,14 @@ import { Notyf }                   from 'notyf';
 @Component({
     selector   : 'app-list',
     standalone : true,
-    imports    : [
+    imports: [
         PageHeaderComponent,
         TranslocoDirective,
         AlbumsTableComponent,
-        MatAnchor,
-        RouterLink,
-        MatButton,
-        MatIconAnchor,
         MatIcon,
         MatTooltip,
-        TranslocoPipe
+        TranslocoPipe,
+        MatIconButton
     ],
     templateUrl: './list.component.html'
 })

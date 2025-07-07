@@ -1,13 +1,8 @@
-import { Component }                           from '@angular/core';
-import { MatAnchor, MatButton, MatIconAnchor } from '@angular/material/button';
-import { MatDivider }                          from '@angular/material/divider';
-import { MatIcon }                             from '@angular/material/icon';
-import { MatTooltip }                          from '@angular/material/tooltip';
-import { RouterLink }                          from '@angular/router';
+import { Component } from '@angular/core';
 
-import { TranslocoDirective, TranslocoPipe } from '@ngneat/transloco';
-import { mergeMap }                          from 'rxjs';
-import { Notyf }                             from 'notyf';
+import { TranslocoDirective } from '@ngneat/transloco';
+import { mergeMap }           from 'rxjs';
+import { Notyf }              from 'notyf';
 
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import { PageHeaderComponent }     from '@layout/components/page-header/page-header.component';
@@ -18,18 +13,10 @@ import { Benefit }                 from '@modules/admin/admin/benefits/models/be
 @Component({
     selector   : 'app-list',
     standalone : true,
-    imports    : [
+    imports: [
         PageHeaderComponent,
         TranslocoDirective,
         BenefitsTableComponent,
-        MatAnchor,
-        RouterLink,
-        MatButton,
-        MatIconAnchor,
-        MatIcon,
-        MatTooltip,
-        TranslocoPipe,
-        MatDivider
     ],
     templateUrl: './list.component.html'
 })

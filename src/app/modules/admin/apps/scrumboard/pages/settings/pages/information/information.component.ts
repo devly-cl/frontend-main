@@ -1,6 +1,5 @@
 import { Component }                                                             from '@angular/core';
 import { TranslocoDirective, TranslocoPipe }                                     from '@ngneat/transloco';
-import { PageHeaderComponent }                                                   from '@layout/components/page-header/page-header.component';
 import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule }                                                    from '@angular/material/form-field';
 import { MatInput }                                                              from '@angular/material/input';
@@ -8,27 +7,23 @@ import { CdkTextareaAutosize }                                                  
 import { ScrumboardService }                                                     from '@modules/admin/apps/scrumboard/services/scrumboard.service';
 import { MatProgressSpinner }                                                    from '@angular/material/progress-spinner';
 import { MatIcon }                                                               from '@angular/material/icon';
-import { MatButton, MatIconButton }                                              from '@angular/material/button';
+import { MatButton }                                                             from '@angular/material/button';
 import { first, take }                                                           from 'rxjs';
-import { JsonPipe }                                                              from '@angular/common';
 import { Notyf }                                                                 from 'notyf';
 
 @Component({
     selector   : 'app-information',
     standalone : true,
-    imports    : [
+    imports: [
         TranslocoDirective,
-        PageHeaderComponent,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatInput,
         CdkTextareaAutosize,
         MatProgressSpinner,
         MatIcon,
-        MatIconButton,
         MatButton,
-        TranslocoPipe,
-        JsonPipe
+        TranslocoPipe
     ],
     templateUrl: './information.component.html'
 })

@@ -1,5 +1,5 @@
 import { CdkTextareaAutosize }                                                                     from '@angular/cdk/text-field';
-import { JsonPipe, NgForOf, NgIf }                                                                 from '@angular/common';
+import { NgIf }                                                                                    from '@angular/common';
 import { ChangeDetectionStrategy, Component, Inject, OnInit }                                      from '@angular/core';
 import { ReactiveFormsModule, UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatButtonModule, MatIconButton }                                                          from '@angular/material/button';
@@ -67,9 +67,8 @@ const EventPlatformEnum = {
     selector       : 'app-new',
     standalone     : true,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports        : [
+    imports: [
         CdkTextareaAutosize,
-        JsonPipe,
         MatButtonModule,
         MatCheckbox,
         MatDatepickerModule,
@@ -83,7 +82,6 @@ const EventPlatformEnum = {
         MatProgressSpinner,
         MatSelectModule,
         MatStepperModule,
-        NgForOf,
         NgIf,
         OpenStreetMapComponent,
         ReactiveFormsModule,
