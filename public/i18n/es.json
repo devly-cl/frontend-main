@@ -251,6 +251,7 @@
             "title" : "Detalle de la Categoría",
             "no-content" : "Sin beneficios",
             "no-content-description" : "No hay beneficios disponibles para mostrar en esta categoría en este momento",
+            "benefits-in-category" : "Beneficios en esta categoría",
             "subcategory" : {
                 "title-list" : "Lista de Subcategorías"
             },

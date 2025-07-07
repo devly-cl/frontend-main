@@ -1,68 +1,88 @@
 @if (category$ | async; as category) {
-    <div *transloco="let t; read: 'benefits.category-detail'" class="flex flex-col flex-auto min-w-0 min-h-full">
+    <div *transloco="let t; read: 'benefits.category-detail'" class="flex flex-col flex-auto min-w-0 min-h-full bg-gray-50 dark:bg-gray-900">
 
         <!-- Header -->
-        <div class="bg-card shadow-md">
-            <div class="flex flex-col md:flex-row w-full max-w-5xl mx-auto">
-                <div class="w-full md:w-1/2 flex flex-col flex-0 p-6 sm:p-8 relative z-10 md:max-w-1/2">
-                    <!-- Breadcrumbs -->
-                    <div class="hidden sm:flex flex-wrap items-center font-medium">
-                        <div>
-                            <a [routerLink]="'./../..'" class="whitespace-nowrap text-primary-500">{{ 'benefits.title' | transloco }}</a>
-                        </div>
-                        <div class="flex items-center ml-1 whitespace-nowrap">
-                            <mat-icon
-                                [svgIcon]="'heroicons_mini:chevron-right'"
-                                class="icon-size-5 text-secondary"></mat-icon>
-                            <span [innerHtml]="category.name" class="ml-1 text-secondary"></span>
-                        </div>
+        <div class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+            <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <!-- Mobile back button -->
+                <div class="flex sm:hidden mb-4">
+                    <a [routerLink]="'./../..'" class="inline-flex items-center text-secondary font-medium hover:text-primary transition-colors">
+                        <mat-icon [svgIcon]="'heroicons_solid:chevron-left'" class="icon-size-5 mr-1"></mat-icon>
+                        <span>Back</span>
+                    </a>
+                </div>
+
+                <!-- Breadcrumbs -->
+                <div class="hidden sm:flex flex-wrap items-center font-medium mb-6">
+                    <div>
+                        <a [routerLink]="'./../..'" class="whitespace-nowrap text-primary-500 hover:underline">{{ 'benefits.title' | transloco }}</a>
                     </div>
-                    <div class="flex sm:hidden">
-                        <a
-                            [routerLink]="'./../..'"
-                            class="inline-flex items-center -ml-1.5 text-secondary font-medium">
-                            <mat-icon
-                                [svgIcon]="'heroicons_solid:chevron-left'"
-                                class="icon-size-5 text-secondary"></mat-icon>
-                            <span class="ml-1">Back</span>
-                        </a>
-                    </div>
-                    <!-- Title -->
-                    <div class="mt-2">
-                        <h1 [innerHtml]="category.name" class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10"></h1>
-                        <p [innerHtml]="category.description | deltaToHtml" class="mt-4 text-justify"></p>
+                    <div class="flex items-center ml-1 whitespace-nowrap">
+                        <mat-icon [svgIcon]="'heroicons_mini:chevron-right'" class="icon-size-5 text-secondary"></mat-icon>
+                        <span [innerHtml]="category.name" class="ml-1 text-secondary"></span>
                     </div>
                 </div>
-                <div class="w-full md:w-1/2 flex flex-col relative overflow-hidden md:pr-8 bg-card">
-                    <img [src]="category.image?.fileUrl" alt="BannerImage" class="h-full md:h-64 w-full object-cover"/>
+
+                <!-- Category header content -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Content column -->
+                    <div class="order-2 md:order-1 flex flex-col gap-y-4">
+                        <div>
+                            <h1 [innerHtml]="category.name" class="text-3xl md:text-4xl font-extrabold tracking-tight leading-tight mb-4"></h1>
+                            <div class="prose dark:prose-invert prose-lg max-w-none" [innerHtml]="category.description | deltaToHtml"></div>
+                        </div>
+                    </div>
+
+                    <!-- Image column -->
+                    <div class="order-1 md:order-2">
+                        @if (category.image?.fileUrl) {
+                            <div class="relative rounded-lg overflow-hidden shadow-md group">
+                                <img [src]="category.image?.fileUrl" alt="Category Image" class="h-auto w-full transition-transform duration-500 group-hover:scale-105"/>
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            </div>
+                        } @else {
+                            <div class="bg-gray-200 dark:bg-gray-700 rounded-lg h-64 flex items-center justify-center">
+                                <mat-icon [svgIcon]="'heroicons_outline:photo'" class="icon-size-16 text-gray-400 dark:text-gray-500"></mat-icon>
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Benefits -->
-        <div class="flex flex-col justify-center md:justify-start w-full h-full max-w-xs sm:max-w-5xl mx-auto p-6 sm:p-8">
-            <benefit-categories-list [categoryId]="categoryId"></benefit-categories-list>
-            <div class="flex flex-col w-full">
-                <div class="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 grid gap-8 py-8 justify-items-start">
+        <!-- Main content container -->
+        <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <!-- Categories list with enhanced styling -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6 mb-8">
+                <benefit-categories-list [categoryId]="categoryId"></benefit-categories-list>
+            </div>
+
+            <!-- Benefits section -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold">{{ t('benefits-in-category') || 'Benefits in this category' }}</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     @if (benefits$ | async; as benefits) {
                         @if (benefits.length) {
                             @for (benefit of benefits; track benefit.id) {
-                                <a [routerLink]="['/apps/benefits/id', benefit.id]">
-                                    <benefit-card [benefit]="benefit" class="col-span-1"></benefit-card>
+                                <a [routerLink]="['/apps/benefits/id', benefit.id]" class="max-w-80 transform transition-all duration-300 hover:scale-105 hover:shadow-lg rounded-2xl">
+                                    <benefit-card [benefit]="benefit"></benefit-card>
                                 </a>
                             }
                         } @else {
-                            <div class="col-span-3 flex flex-col flex-wrap items-center justify-center gap-2 w-full">
-                                <mat-icon [svgIcon]="'heroicons_outline:inbox'" class="w-12 h-12 first text-primary-500"></mat-icon>
+                            <div class="col-span-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm p-8 flex flex-col items-center justify-center gap-4">
+                                <mat-icon [svgIcon]="'heroicons_outline:inbox'" class="w-16 h-16 text-primary-500 opacity-75"></mat-icon>
                                 <div class="text-center">
-                                    <p class="text-lg font-semibold">{{ t('no-content') }}</p>
-                                    <p class="text-sm text-secondary">{{ t('no-content-description') }}</p>
+                                    <p class="text-xl font-semibold">{{ t('no-content') }}</p>
+                                    <p class="text-secondary mt-2">{{ t('no-content-description') }}</p>
                                 </div>
                             </div>
                         }
                     } @else {
-                        <div class="flex flex-row flex-wrap justify-center gap-8">
-                            <mat-spinner class="w-12 h-12"></mat-spinner>
+                        <div class="col-span-3 flex justify-center py-12">
+                            <mat-spinner diameter="48"></mat-spinner>
                         </div>
                     }
                 </div>
