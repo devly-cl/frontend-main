@@ -1,73 +1,186 @@
-<fuse-card class="group flex flex-col max-w-80 w-full relative">
-    <mat-icon *ngIf="!useRouter && externalLogo" [svgIcon]="'radio_bio_bio'" class="absolute top-8 left-8 z-10 bg-white rounded-full p-[5px] w-8 h-8"></mat-icon>
-    <a
-        *ngIf="useRouter"
-        [matTooltip]="actionText"
-        [routerLink]="['/news', 'read', news.slug]"
-        class="
-      absolute rounded-full m-0 w-[unset] top-8 right-8 z-10 flex items-center justify-center
-      bg-dialog group-hover:bg-opacity-100
-      text-white group-hover:text-primary-500 bg-opacity-50 dark:text-primary-500 dark:group-hover:text-white
-      transition duration-300 ease-in-out
-    "
-    >
+<!-- Internal navigation wrapper -->
+<a
+    *ngIf="useRouter"
+    [matTooltip]="actionText"
+    [routerLink]="['/news', 'read', news.slug]"
+    class="block w-full h-full cursor-pointer"
+>
+    <fuse-card class="group flex flex-col w-full h-full relative overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300">
+        <!-- External logo (if applicable) -->
         <mat-icon
-            [svgIcon]="'heroicons_mini:arrow-right'"
-            class="
-          min-w-[unset] min-h-[unset] w-8 h-8 p-1.5
-          text-white group-hover:text-primary-500 dark:text-primary-500 dark:group-hover:text-white
-          transition duration-300 ease-in-out
-        "
+            *ngIf="!useRouter && externalLogo"
+            [svgIcon]="'radio_bio_bio'"
+            class="absolute top-4 left-4 z-20 bg-white dark:bg-gray-800 rounded-full p-1.5 w-8 h-8 shadow-sm"
         ></mat-icon>
-    </a>
-    <a
-        *ngIf="!useRouter"
-        [href]="news.custom.url"
-        [matTooltip]="actionText"
-        class="
-      absolute rounded-full m-0 w-[unset] top-8 right-8 z-10 flex items-center justify-center
-      bg-dialog group-hover:bg-opacity-100
-      text-white group-hover:text-primary-500 bg-opacity-50 dark:text-primary-500 dark:group-hover:text-white
-      transition duration-300 ease-in-out
-    "
-        target="_blank">
-        <mat-icon
-            [svgIcon]="'heroicons_mini:arrow-top-right-on-square'"
-            class="
-          min-w-[unset] min-h-[unset] w-8 h-8 p-1.5
-          text-white group-hover:text-primary-500 dark:text-primary-500 dark:group-hover:text-white
-          transition duration-300 ease-in-out
-        "
-        ></mat-icon>
-    </a>
-    <div class="relative">
-        <img
-            [src]="news.portraitImage?.fileUrl || 'https://picsum.photos/500/300?random=' + index"
-            alt="Card cover image"
-            class="h-50 object-cover">
-        <div class="gradient-overlay to-b w-full h-1/2 -bottom-px left-0"></div>
-    </div>
-    <div class="m-8 -mt-8 z-10">
-        <div class="text-md font-semibold leading-none tracking-wide text-primary mb-2">{{ news.category.name | uppercase }}</div>
-        <div [title]="news.headline" class="text-xl font-semibold leading-tight line-clamp-2">{{ news.headline }}</div>
-        <div [matTooltip]="news.abstract" class="mt-2 text-secondary line-clamp-4">{{ news.abstract }}</div>
-        <div class="w-12 h-1 my-6 border-t-2"></div>
-        <!-- Publisher info -->
-        <div class="flex items-center mt-6">
-            @if (news.createdBy?.avatar) {
-                <img
-                    [src]="news.createdBy?.avatar?.fileUrl"
-                    alt="News card cover image"
-                    class="w-10 h-10 rounded-full">
-            } @else {
-                <div class="ring-bg-card flex h-10 w-10 flex-0 items-center justify-center rounded-full bg-gray-200 text-gray-500 font-medium">
-                    {{ news.createdBy?.name.charAt(0) }}
-                </div>
-            }
-            <div class="flex flex-col ml-3">
-                <span [innerText]="news.createdBy.name" class="font-medium leading-none"></span>
-                <span [innerText]="relativeTime(news.publishedAt.getTime())" class="text-sm text-secondary leading-none mt-1"></span>
+
+        <!-- Action indicator for internal navigation -->
+        <div class="absolute rounded-full m-0 w-10 h-10 top-4 right-4 z-20 
+            flex items-center justify-center
+            bg-white dark:bg-gray-800 shadow-md
+            group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20
+            transition-all duration-300 ease-in-out">
+            <mat-icon
+                [svgIcon]="'heroicons_mini:arrow-right'"
+                class="w-5 h-5
+                    text-gray-700 group-hover:text-primary-500 
+                    dark:text-gray-300 dark:group-hover:text-primary-400
+                    transition-colors duration-300 ease-in-out"
+            ></mat-icon>
+        </div>
+
+        <!-- Image section with improved styling -->
+        <div class="relative overflow-hidden">
+            <img
+                [src]="news.portraitImage?.fileUrl || 'https://picsum.photos/500/300?random=' + index"
+                alt="News cover image"
+                class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
+
+            <!-- Category badge -->
+            <div class="absolute bottom-4 left-4">
+                <span class="bg-primary-500 text-white text-xs font-medium px-2.5 py-1 rounded shadow-sm">
+                    {{ news.category.name | uppercase }}
+                </span>
             </div>
         </div>
-    </div>
-</fuse-card>
+
+        <!-- Content section with improved styling -->
+        <div class="flex-1 p-5">
+            <!-- Headline -->
+            <h3
+                [title]="news.headline"
+                class="text-xl font-bold leading-tight line-clamp-2 mb-2 group-hover:text-primary-500 transition-colors duration-300"
+            >
+                {{ news.headline }}
+            </h3>
+
+            <!-- Abstract -->
+            <p
+                [matTooltip]="news.abstract"
+                class="text-secondary text-sm line-clamp-3 mb-4"
+            >
+                {{ news.abstract }}
+            </p>
+
+            <!-- Publisher info with improved styling -->
+            <div class="mt-auto pt-3 border-t border-gray-200 dark:border-gray-700 flex items-center">
+                @if (news.createdBy?.avatar) {
+                    <img
+                        [src]="news.createdBy?.avatar?.fileUrl"
+                        alt="Author avatar"
+                        class="w-8 h-8 rounded-full object-cover border border-gray-200 dark:border-gray-700"
+                    >
+                } @else {
+                    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 text-sm font-medium border border-gray-200 dark:border-gray-700">
+                        {{ news.createdBy?.name.charAt(0) }}
+                    </div>
+                }
+                <div class="flex flex-col ml-3 flex-1">
+                    <span [innerText]="news.createdBy.name" class="font-medium text-sm leading-tight"></span>
+                    <span [innerText]="relativeTime(news.publishedAt.getTime())" class="text-xs text-secondary leading-tight"></span>
+                </div>
+
+                <!-- Read more link -->
+                <span class="inline-flex items-center text-primary text-xs font-medium group-hover:underline">
+                    Leer más
+                    <mat-icon [svgIcon]="'heroicons_solid:arrow-right'" class="icon-size-4 ml-1"></mat-icon>
+                </span>
+            </div>
+        </div>
+    </fuse-card>
+</a>
+
+<!-- External navigation wrapper -->
+<a
+    *ngIf="!useRouter"
+    [href]="news.custom.url"
+    [matTooltip]="actionText"
+    class="block w-full h-full cursor-pointer"
+    target="_blank"
+>
+    <fuse-card class="group flex flex-col w-full h-full relative overflow-hidden bg-white dark:bg-gray-800 shadow-sm hover:shadow-md transition-all duration-300">
+        <!-- External logo (if applicable) -->
+        <mat-icon
+            *ngIf="!useRouter && externalLogo"
+            [svgIcon]="'radio_bio_bio'"
+            class="absolute top-4 left-4 z-20 bg-white dark:bg-gray-800 rounded-full p-1.5 w-8 h-8 shadow-sm"
+        ></mat-icon>
+
+        <!-- Action indicator for external navigation -->
+        <div class="absolute rounded-full m-0 w-10 h-10 top-4 right-4 z-20 
+            flex items-center justify-center
+            bg-white dark:bg-gray-800 shadow-md
+            group-hover:bg-primary-50 dark:group-hover:bg-primary-900/20
+            transition-all duration-300 ease-in-out">
+            <mat-icon
+                [svgIcon]="'heroicons_mini:arrow-top-right-on-square'"
+                class="w-5 h-5
+                    text-gray-700 group-hover:text-primary-500 
+                    dark:text-gray-300 dark:group-hover:text-primary-400
+                    transition-colors duration-300 ease-in-out"
+            ></mat-icon>
+        </div>
+
+        <!-- Image section with improved styling -->
+        <div class="relative overflow-hidden">
+            <img
+                [src]="news.portraitImage?.fileUrl || 'https://picsum.photos/500/300?random=' + index"
+                alt="News cover image"
+                class="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-70"></div>
+
+            <!-- Category badge -->
+            <div class="absolute bottom-4 left-4">
+                <span class="bg-primary-500 text-white text-xs font-medium px-2.5 py-1 rounded shadow-sm">
+                    {{ news.category.name | uppercase }}
+                </span>
+            </div>
+        </div>
+
+        <!-- Content section with improved styling -->
+        <div class="flex-1 p-5">
+            <!-- Headline -->
+            <h3
+                [title]="news.headline"
+                class="text-xl font-bold leading-tight line-clamp-2 mb-2 group-hover:text-primary-500 transition-colors duration-300"
+            >
+                {{ news.headline }}
+            </h3>
+
+            <!-- Abstract -->
+            <p
+                [matTooltip]="news.abstract"
+                class="text-secondary text-sm line-clamp-3 mb-4"
+            >
+                {{ news.abstract }}
+            </p>
+
+            <!-- Publisher info with improved styling -->
+            <div class="mt-auto pt-3 border-t border-gray-200 dark:border-gray-700 flex items-center">
+                @if (news.createdBy?.avatar) {
+                    <img
+                        [src]="news.createdBy?.avatar?.fileUrl"
+                        alt="Author avatar"
+                        class="w-8 h-8 rounded-full object-cover border border-gray-200 dark:border-gray-700"
+                    >
+                } @else {
+                    <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 text-sm font-medium border border-gray-200 dark:border-gray-700">
+                        {{ news.createdBy?.name.charAt(0) }}
+                    </div>
+                }
+                <div class="flex flex-col ml-3 flex-1">
+                    <span [innerText]="news.createdBy.name" class="font-medium text-sm leading-tight"></span>
+                    <span [innerText]="relativeTime(news.publishedAt.getTime())" class="text-xs text-secondary leading-tight"></span>
+                </div>
+
+                <!-- Read more link -->
+                <span class="inline-flex items-center text-primary text-xs font-medium group-hover:underline">
+                    Leer más
+                    <mat-icon [svgIcon]="'heroicons_solid:arrow-right'" class="icon-size-4 ml-1"></mat-icon>
+                </span>
+            </div>
+        </div>
+    </fuse-card>
+</a>
