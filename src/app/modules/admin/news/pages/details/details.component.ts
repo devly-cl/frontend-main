@@ -11,21 +11,19 @@ import { TranslocoDirective }                       from '@ngneat/transloco';
 import { LightgalleryModule }                       from 'lightgallery/angular';
 import { SwiperOptions }                            from 'swiper/types';
 import { A11y, Mousewheel, Navigation, Pagination } from 'swiper/modules';
-
-import { FuseCardComponent } from '@fuse/components/card';
-import { SwiperDirective }   from '@core/directives/swiper/swiper.directive';
-import { UserService }       from '@core/user/user.service';
+import { SwiperDirective }                          from '@core/directives/swiper/swiper.directive';
+import { UserService }                              from '@core/user/user.service';
 
 import { INews }                     from '../../domain/interfaces/news.interface';
 import { LightGallery }              from 'lightgallery/lightgallery';
 import lightGallery                  from 'lightgallery';
 import { QuillViewComponent }        from 'ngx-quill';
-import { PageDetailHeaderComponent } from '../../../../../shared/components/page-detail-header/page-detail-header.component';
+import { PageDetailHeaderComponent } from '@shared/components/page-detail-header/page-detail-header.component';
 
 @Component({
     selector     : 'app-single-news',
     standalone   : true,
-    imports: [ CommonModule, MatButtonModule, MatIconModule, MatDividerModule, MatTooltipModule, FuseCardComponent, MatInputModule, SwiperDirective, TranslocoDirective, LightgalleryModule, QuillViewComponent, PageDetailHeaderComponent ],
+    imports: [ CommonModule, MatButtonModule, MatIconModule, MatDividerModule, MatTooltipModule, MatInputModule, SwiperDirective, TranslocoDirective, LightgalleryModule, QuillViewComponent, PageDetailHeaderComponent ],
     encapsulation: ViewEncapsulation.None,
     templateUrl  : './details.component.html',
     schemas      : [ CUSTOM_ELEMENTS_SCHEMA ]

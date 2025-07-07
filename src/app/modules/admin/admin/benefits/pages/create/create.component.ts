@@ -25,7 +25,6 @@ import { BenefitCategoryService }       from '@modules/admin/admin/benefits/serv
 import { BenefitCompanyService }        from '@modules/admin/admin/benefits/services/benefit-company.service';
 import { BenefitMapper }                from '@modules/admin/admin/benefits/models/benefit';
 import { PageDetailHeaderComponent }    from '@shared/components/page-detail-header/page-detail-header.component';
-import { deltaEmptyValidator }          from '@core/validators/delta-empty.validator';
 
 @Component({
     selector       : 'app-create',
@@ -222,7 +221,7 @@ export class CreateComponent implements OnInit {
     private _loadForm() {
         this.form = this._formBuilder.group({
             name        : [ null, [ Validators.required ] ],
-            description: [ null, [ Validators.required, deltaEmptyValidator() ] ],
+            description: [ null, [ Validators.required ] ],
             type        : [ null, [ Validators.required ] ],
             category    : [ null, [ Validators.required ] ],
             company     : [ null, [ Validators.required ] ],

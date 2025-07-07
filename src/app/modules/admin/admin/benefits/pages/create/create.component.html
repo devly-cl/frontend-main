@@ -51,6 +51,7 @@
                                     formControlName="description"
                                 ></quill-editor>
                                 @if (form.get('description').touched && (form.get('description').hasError('required') || form.get('description').hasError('deltaEmpty'))) {
+                                    {{ form.get('description').hasError('deltaEmpty') }}
                                     <mat-error class="text-sm">{{ 'errors.form.required' | transloco }}</mat-error>
                                 }
                             } @placeholder {

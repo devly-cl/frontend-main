@@ -98,8 +98,126 @@
     }
 }
 
-quill-view .ql-container {
-    max-height: unset !important;
+quill-view, .quill-content-view {
+    display: block;
+
+    .ql-container {
+        max-height: unset !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .ql-editor {
+        padding: 0 !important;
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 1.5em;
+            margin-bottom: 0.75em;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.25em;
+        }
+
+        p {
+            margin-bottom: 1em;
+            line-height: 1.6;
+        }
+
+        ul, ol {
+            margin-bottom: 1em;
+            padding-left: 1.5em;
+
+            li {
+                margin-bottom: 0.5em;
+            }
+        }
+
+        blockquote {
+            border-left: 4px solid #e2e8f0;
+            padding-left: 1em;
+            margin-left: 0;
+            margin-right: 0;
+            font-style: italic;
+
+            .dark & {
+                border-left-color: #4b5563;
+            }
+        }
+
+        pre {
+            background-color: #f7fafc;
+            border-radius: 0.375rem;
+            padding: 1em;
+            margin-bottom: 1em;
+            overflow-x: auto;
+
+            .dark & {
+                background-color: #1f2937;
+            }
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.375rem;
+            margin: 1em 0;
+        }
+
+        a {
+            color: var(--fuse-primary);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(var(--fuse-primary-rgb), 0.4);
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                border-bottom-color: var(--fuse-primary);
+                background-color: rgba(var(--fuse-primary-rgb), 0.05);
+            }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1em;
+
+            th, td {
+                border: 1px solid #e2e8f0;
+                padding: 0.5em;
+
+                .dark & {
+                    border-color: #4b5563;
+                }
+            }
+
+            th {
+                background-color: #f7fafc;
+                font-weight: 600;
+
+                .dark & {
+                    background-color: #374151;
+                }
+            }
+
+            tr:nth-child(even) {
+                background-color: #f7fafc;
+
+                .dark & {
+                    background-color: #1f2937;
+                }
+            }
+        }
+    }
 }
 
 .ql-container {
@@ -160,6 +278,50 @@ quill-view .ql-container {
             .dark & {
                 @apply bg-gray-700 border-gray-500 #{'!important'};
             }
+        }
+    }
+}
+
+/* Specific styles for the news details page quill content */
+.quill-content-container {
+    /* Add some breathing room */
+    max-width: 100%;
+    margin: 0 auto;
+
+    /* Improve readability */
+    font-size: 1.05rem;
+    line-height: 1.7;
+
+    /* Ensure proper spacing between elements */
+    > * + * {
+        margin-top: 1.5em;
+    }
+
+    /* Style for images within the content */
+    img {
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        margin: 2rem auto;
+        display: block;
+    }
+
+    /* Style for code blocks */
+    pre {
+        border-radius: 0.5rem;
+        margin: 1.5rem 0;
+    }
+
+    /* Style for blockquotes */
+    blockquote {
+        font-size: 1.1em;
+        border-left-width: 4px;
+        padding: 1rem 0 1rem 1.5rem;
+        margin: 1.5rem 0;
+        background-color: rgba(0, 0, 0, 0.02);
+        border-radius: 0 0.5rem 0.5rem 0;
+
+        .dark & {
+            background-color: rgba(255, 255, 255, 0.05);
         }
     }
 }

@@ -1,4 +1,4 @@
-<div *transloco="let t; read: 'news'" class="flex flex-col flex-auto min-w-0 min-h-full">
+<div *transloco="let t; read: 'news'" class="flex flex-col flex-auto min-w-0 min-h-full bg-gray-50 dark:bg-gray-900">
 
     <!-- Header -->
     <page-detail-header
@@ -10,134 +10,241 @@
         [title]="news.headline"
     ></page-detail-header>
 
-    <!-- Main -->
-    <div class="bg-card dark:bg-transparent flex flex-col justify-center w-full h-full max-w-xs sm:max-w-5xl mx-auto p-6 sm:p-8">
-        <lightgallery #lightGallery [settings]="settings">
-        </lightgallery>
+    <!-- Hidden lightgallery container -->
+    <lightgallery #lightGallery [settings]="settings"></lightgallery>
 
-        <swiper-container [config]="config" class="w-full mb-4" fmSwiper>
-            @if (news.portraitImage?.fileUrl) {
-                <swiper-slide>
-                    <img
-                        (click)="openGallery(0)"
-                        [src]="news.portraitImage.fileUrl"
-                        alt="Card cover image"
-                        class="object-contain max-h-90 max-w-3/4">
-                </swiper-slide>
-            }
-            @for (image of news.images; track image.name) {
-                <swiper-slide class="pb-6 self-center">
-                    <img
-                        (click)="openGallery(news.portraitImage?.fileUrl ? $index + 1 : $index)"
-                        [src]="image.fileUrl"
-                        alt="Card cover image"
-                        class="object-contain max-h-90 max-w-3/4">
-                    <!--              <div class="gradient-overlay default hover:opacity-0 transition-all"></div>-->
-                </swiper-slide>
-            }
-        </swiper-container>
-        <!-- Content -->
-        <quill-view [content]="news.body" format="object"></quill-view>
-    </div>
-
-    <!--    Additional section -->
-    <div class="flex flex-col justify-center w-full h-full sm:max-w-5xl mx-auto py-6 sm:py-8 mt-6">
-        <h4 class="text-2xl font-bold mt-4">{{ t('single-news.published-by') }}:</h4>
-        <fuse-card class="flex items-center w-full p-6 filter-info mt-2 gap-x-4">
-            @if (news.createdBy?.avatar) {
-                <img
-                    [src]="news.createdBy?.avatar?.fileUrl"
-                    alt="Card cover image"
-                    class="w-16 h-16 rounded-full">
-            } @else {
-                <div class="ring-bg-card flex h-16 w-16 flex-0 items-center justify-center rounded-full bg-gray-200 text-gray-500 font-medium">
-                    {{ news.createdBy?.name.charAt(0) }}
-                </div>
-            }
-            <div class="flex flex-col">
-                <div [innerText]="news.createdBy.name" class="text-2xl font-semibold leading-tight"></div>
-            </div>
-        </fuse-card>
-
-        <!-- Comment section -->
-        <h4 class="text-2xl font-bold mt-4">{{ t('single-news.comments') }}:</h4>
-        <fuse-card class="flex flex-col max-h-192 w-full mt-2">
-            <!-- User comment -->
-            <div *ngIf="(userService.user$ | async) as user" class="flex flex-col mx-4 sm:mx-8 mt-6 mb-3">
-                <div class="flex items-start">
-
-
-                <mat-form-field
-                        [subscriptSizing]="'dynamic'"
-                        class="w-full">
-                            <textarea
-                                [placeholder]="t('single-news.write-comment')"
-                                [rows]="3"
-                                cdkTextareaAutosize
-                                class="leading-normal my-2"
-                                matInput></textarea>
-                    </mat-form-field>
-                </div>
-                <div class="flex items-center mt-3 ml-auto -mr-3">
-                    <button mat-icon-button>
-                        <mat-icon
-                            [svgIcon]="'heroicons_solid:sparkles'"
-                            class="icon-size-5"></mat-icon>
-                    </button>
-                    <button mat-icon-button>
-                        <mat-icon
-                            [svgIcon]="'heroicons_solid:face-smile'"
-                            class="icon-size-5"></mat-icon>
-                    </button>
-                    <button mat-icon-button>
-                        <mat-icon
-                            [svgIcon]="'heroicons_solid:photo'"
-                            class="icon-size-5"></mat-icon>
-                    </button>
-                </div>
-            </div>
-            <hr class="border-b mx-4 sm:mx-8 my-0">
-            <!-- Other comments -->
-            <div class="overflow-y-auto">
-                <div class="relative flex flex-col mx-4 sm:mx-8 my-6">
-                    <!-- TODO: Use ngFor or @for to display each message -->
-                    <div class="flex items-start">
-                        <img
-                            alt="Card cover image"
-                            class="w-8 h-8 rounded-full mr-4"
-                            src="images/avatars/male-05.jpg">
-                        <div class="flex flex-col mt-0.5">
-                                <span>
-                                    <b>Rutherford Brannan</b> Oh, I’m in.. Let’s arrange a trip for the next weekend if you want!
-                                </span>
-                            <div class="flex items-center text-sm text-secondary mt-2">
-                                <span class="mr-2 cursor-pointer hover:underline">Like</span>
-                                <span class="mr-2 cursor-pointer hover:underline">Reply</span>
-                                <span class="mr-2 cursor-pointer hover:underline">Hide replies</span>
-                                <span class="mr-2">&bull;</span>
-                                <span>17 min</span>
-                            </div>
-                        </div>
+    <!-- Main container with responsive grid layout -->
+    <div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Main content column - takes 2/3 of space on large screens -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Image Gallery Section - Now more prominent at the top -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
+                    <div class="p-6 sm:p-8 pb-2">
+                        <h2 class="text-2xl font-bold mb-4">{{ t('single-news.gallery') || 'Gallery' }}</h2>
                     </div>
-                    <div class="flex items-start mt-8 ml-12">
-                        <img
-                            alt="Card cover image"
-                            class="w-8 h-8 rounded-full mr-4"
-                            src="images/avatars/female-01.jpg">
-                        <div class="flex flex-col mt-0.5">
-                                <span>
-                                    <b>Caroline Lundu</b> Yes!! Let's talk about it on lunch!
-                                </span>
-                            <div class="flex items-center text-sm text-secondary mt-2">
-                                <span class="mr-2 cursor-pointer hover:underline">Like</span>
-                                <span class="mr-2 cursor-pointer hover:underline">Reply</span>
-                                <span class="mr-2">&bull;</span>
-                                <span>15 min</span>
-                            </div>
+                    <div class="w-full">
+                        <swiper-container [config]="config" class="w-full" fmSwiper>
+                            @if (news.portraitImage?.fileUrl) {
+                                <swiper-slide class="flex justify-center items-center py-6">
+                                    <div class="relative group cursor-pointer shadow-xl rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                                        <img [src]="news.portraitImage.fileUrl"
+                                             alt="Card cover image"
+                                             class="object-contain max-h-96 w-auto">
+                                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center" (click)="openGallery(0)">
+                                            <mat-icon class="text-white opacity-0 group-hover:opacity-100 transform scale-0 group-hover:scale-100 transition-all duration-300" svgIcon="heroicons_outline:arrows-pointing-out"></mat-icon>
+                                        </div>
+                                    </div>
+                                </swiper-slide>
+                            }
+                            @for (image of news.images; track image.name) {
+                                <swiper-slide class="flex justify-center items-center py-6">
+                                    <div class="relative group cursor-pointer shadow-xl rounded-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+                                        <img [src]="image.fileUrl"
+                                             alt="Card cover image"
+                                             class="object-contain max-h-96 w-auto">
+                                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center" (click)="openGallery(news.portraitImage?.fileUrl ? $index + 1 : $index)">
+                                            <mat-icon class="text-white opacity-0 group-hover:opacity-100 transform scale-0 group-hover:scale-100 transition-all duration-300" svgIcon="heroicons_outline:arrows-pointing-out"></mat-icon>
+                                        </div>
+                                    </div>
+                                </swiper-slide>
+                            }
+                        </swiper-container>
+                    </div>
+                </div>
+
+                <!-- Content Section -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                    <div class="p-6 sm:p-8">
+                        <div class="prose dark:prose-invert prose-lg max-w-none quill-content-container">
+                            <quill-view [content]="news.body" class="quill-content-view" format="object"></quill-view>
                         </div>
                     </div>
                 </div>
+
+                <!-- Comment section - moved below content for better flow -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm">
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-2xl font-bold mb-6 border-b pb-2">{{ t('single-news.comments') }}</h3>
+
+                        <!-- User comment input -->
+                        <div *ngIf="(userService.user$ | async) as user" class="mb-6 border-b border-gray-200 dark:border-gray-700 pb-6">
+                            <div class="flex items-start gap-4">
+                                @if (user?.avatar?.fileUrl) {
+                                    <img [src]="user.avatar.fileUrl" alt="Your avatar" class="w-10 h-10 rounded-full object-cover">
+                                } @else {
+                                    <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 text-lg font-bold">
+                                        {{ user?.name?.charAt(0) || 'U' }}
+                                    </div>
+                                }
+                                <div class="flex-1">
+                                    <mat-form-field [subscriptSizing]="'dynamic'" class="w-full">
+                                        <textarea
+                                            [placeholder]="t('single-news.write-comment')"
+                                            [rows]="2"
+                                            cdkTextareaAutosize
+                                            class="leading-normal"
+                                            matInput></textarea>
+                                    </mat-form-field>
+                                    <div class="flex justify-between items-center mt-2">
+                                        <div class="flex gap-1">
+                                            <button class="w-8 h-8 min-h-8" mat-icon-button>
+                                                <mat-icon [svgIcon]="'heroicons_solid:face-smile'" class="icon-size-5"></mat-icon>
+                                            </button>
+                                            <button class="w-8 h-8 min-h-8" mat-icon-button>
+                                                <mat-icon [svgIcon]="'heroicons_solid:photo'" class="icon-size-5"></mat-icon>
+                                            </button>
+                                        </div>
+                                        <button class="min-w-fit px-4" color="primary" mat-flat-button>
+                                            {{ t('single-news.post') || 'Post' }}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Comments list -->
+                        <div class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <!-- Comment 1 -->
+                            <div class="py-6">
+                                <div class="flex gap-4">
+                                    <img
+                                        alt="User avatar"
+                                        class="w-10 h-10 rounded-full object-cover"
+                                        src="images/avatars/male-05.jpg">
+                                    <div class="flex-1">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="font-medium">Rutherford Brannan</span>
+                                            <span class="text-xs text-secondary">17 min ago</span>
+                                        </div>
+                                        <p class="text-gray-800 dark:text-gray-200 mb-2">
+                                            Oh, I'm in.. Let's arrange a trip for the next weekend if you want!
+                                        </p>
+                                        <div class="flex items-center text-xs text-secondary">
+                                            <button class="min-w-fit h-8 px-2" color="primary" mat-button>
+                                                <mat-icon [svgIcon]="'heroicons_solid:hand-thumb-up'" class="icon-size-4 mr-1"></mat-icon>
+                                                Like
+                                            </button>
+                                            <button class="min-w-fit h-8 px-2" color="primary" mat-button>
+                                                <mat-icon [svgIcon]="'heroicons_solid:chat-bubble-left'" class="icon-size-4 mr-1"></mat-icon>
+                                                Reply
+                                            </button>
+                                        </div>
+
+                                        <!-- Nested reply -->
+                                        <div class="mt-4 ml-6 pt-4 border-t border-gray-100 dark:border-gray-700">
+                                            <div class="flex gap-4">
+                                                <img
+                                                    alt="User avatar"
+                                                    class="w-8 h-8 rounded-full object-cover"
+                                                    src="images/avatars/female-01.jpg">
+                                                <div class="flex-1">
+                                                    <div class="flex items-center justify-between mb-1">
+                                                        <span class="font-medium">Caroline Lundu</span>
+                                                        <span class="text-xs text-secondary">15 min ago</span>
+                                                    </div>
+                                                    <p class="text-gray-800 dark:text-gray-200 mb-2">
+                                                        Yes!! Let's talk about it on lunch!
+                                                    </p>
+                                                    <div class="flex items-center text-xs text-secondary">
+                                                        <button class="min-w-fit h-8 px-2" color="primary" mat-button>
+                                                            <mat-icon [svgIcon]="'heroicons_solid:hand-thumb-up'" class="icon-size-4 mr-1"></mat-icon>
+                                                            Like
+                                                        </button>
+                                                        <button class="min-w-fit h-8 px-2" color="primary" mat-button>
+                                                            <mat-icon [svgIcon]="'heroicons_solid:chat-bubble-left'" class="icon-size-4 mr-1"></mat-icon>
+                                                            Reply
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </fuse-card>
+
+            <!-- Sidebar column - takes 1/3 of space on large screens -->
+            <div class="space-y-8">
+                <!-- Author section - moved to sidebar -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm sticky top-24">
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-2xl font-bold mb-6 border-b pb-2">{{ t('single-news.published-by') }}</h3>
+                        <div class="flex flex-col items-center text-center mb-6">
+                            @if (news.createdBy?.avatar) {
+                                <img
+                                    [src]="news.createdBy?.avatar?.fileUrl"
+                                    alt="Author avatar"
+                                    class="w-24 h-24 rounded-full object-cover border-4 border-gray-100 dark:border-gray-700 shadow-sm mb-4">
+                            } @else {
+                                <div class="flex h-24 w-24 items-center justify-center rounded-full bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-100 text-3xl font-bold shadow-sm border-4 border-gray-100 dark:border-gray-700 mb-4">
+                                    {{ news.createdBy?.name.charAt(0) }}
+                                </div>
+                            }
+                            <div class="flex flex-col">
+                                <div [innerText]="news.createdBy.name" class="text-2xl font-semibold leading-tight mb-1"></div>
+                                <div class="text-secondary text-sm flex items-center justify-center">
+                                    <mat-icon [svgIcon]="'heroicons_solid:calendar'" class="icon-size-4 mr-1"></mat-icon>
+                                    <span>{{ news.publishedAt | date: 'longDate' }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional author info or related content could go here -->
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                            <h4 class="font-medium mb-3">{{ t('single-news.share') || 'Share' }}</h4>
+                            <div class="flex justify-center gap-4">
+                                <button class="text-blue-500" mat-icon-button>
+                                    <mat-icon [svgIcon]="'feather:facebook'"></mat-icon>
+                                </button>
+                                <button class="text-blue-400" mat-icon-button>
+                                    <mat-icon [svgIcon]="'feather:twitter'"></mat-icon>
+                                </button>
+                                <button class="text-red-500" mat-icon-button>
+                                    <mat-icon [svgIcon]="'feather:instagram'"></mat-icon>
+                                </button>
+                                <button class="text-green-500" mat-icon-button>
+                                    <mat-icon [svgIcon]="'feather:link'"></mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related news or additional sidebar content could go here -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm hidden lg:block">
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-xl font-bold mb-4 border-b pb-2">{{ t('single-news.related') || 'Related News' }}</h3>
+                        <div class="space-y-4">
+                            <!-- This is placeholder content - would be populated from actual data -->
+                            <div class="flex items-start gap-3">
+                                <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-md flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-medium text-sm line-clamp-2">Another interesting news article title that might be related</h4>
+                                    <p class="text-xs text-secondary mt-1">2 days ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-md flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-medium text-sm line-clamp-2">News about similar topics that might interest the reader</h4>
+                                    <p class="text-xs text-secondary mt-1">5 days ago</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <div class="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-md flex-shrink-0"></div>
+                                <div>
+                                    <h4 class="font-medium text-sm line-clamp-2">More content that could be relevant to this article</h4>
+                                    <p class="text-xs text-secondary mt-1">1 week ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

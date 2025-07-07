@@ -1,17 +1,33 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { RouterLink, RouterLinkActive }                                                                                                   from '@angular/router';
-import { MatDrawer, MatSidenavModule }                                                                                                    from '@angular/material/sidenav';
-import { MatButtonModule }                                                                                                                from '@angular/material/button';
-import { MatIconModule }                                                                                                                  from '@angular/material/icon';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    computed,
+    ContentChild,
+    EventEmitter,
+    inject,
+    Input,
+    OnDestroy,
+    OnInit,
+    Output,
+    ViewChild
+} from '@angular/core';
+import {RouterLink, RouterLinkActive} from '@angular/router';
+import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
-import { Subject, takeUntil } from 'rxjs';
+import {Subject, takeUntil} from 'rxjs';
 
-import { FuseMediaWatcherService } from '../../../../@fuse/services/media-watcher';
-import { trackByFn }               from '@libs/ui/utils/utils';
-import { PanelType }               from './panel.type';
-import { DrawerHeaderComponent }   from './components/drawer-header.component';
-import { DrawerContentComponent }  from './components/drawer-content.component';
-import { CdkScrollable }           from '@angular/cdk/overlay';
+import {FuseMediaWatcherService} from '../../../../@fuse/services/media-watcher';
+import {trackByFn} from '@libs/ui/utils/utils';
+import {PanelType} from './panel.type';
+import {DrawerHeaderComponent} from './components/drawer-header.component';
+import {DrawerContentComponent} from './components/drawer-content.component';
+import {CdkScrollable} from '@angular/cdk/overlay';
+import {UserService} from '@core/user/user.service';
+import {AuthService} from '@core/auth/auth.service';
+import {RoleEnum} from '@modules/admin/admin/users/enums/role.enum';
 
 @Component({
     selector       : 'drawer-listing',
@@ -26,8 +42,8 @@ import { CdkScrollable }           from '@angular/cdk/overlay';
     ],
     templateUrl    : './drawer-listing.component.html',
     styles         : `:host {
-        width: 100%;
-        height: 100%;
+      width: 100%;
+      height: 100%;
     }`,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -50,7 +66,14 @@ export class DrawerListingComponent implements OnInit, OnDestroy {
     drawerMode: 'over' | 'side' = 'side';
     drawerOpened: boolean = true;
     protected readonly trackByFn = trackByFn;
-    // type of one of the panels, like entries of Object
+
+    #userService = inject(UserService);
+    #authService = inject(AuthService);
+    visiblePanels = computed<PanelType[]>(() => {
+        const userRole = this.#authService.activeCompany().role;
+
+        return this.filterPanelsByRole(this.panels, userRole);
+    });
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     constructor(
@@ -59,11 +82,12 @@ export class DrawerListingComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        // Subscribe to media changes for responsive behavior
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({matchingAliases}) => {
                 // Set the drawerMode and drawerOpened
-                if (matchingAliases.includes('lg')) {
+                if (matchingAliases.includes('xl')) {
                     this.drawerMode = 'side';
                     this.drawerOpened = true;
                 } else {
@@ -73,6 +97,42 @@ export class DrawerListingComponent implements OnInit, OnDestroy {
 
                 // Mark for check
                 this._changeDetectorRef.markForCheck();
+            });
+    }
+
+    /**
+     * Filters the panels based on the user's role
+     */
+    filterPanelsByRole(panels: PanelType[], roleId: RoleEnum): PanelType[] {
+        // If admin, show all panels
+        if (roleId === RoleEnum.ADMIN) {
+            return panels;
+        }
+
+        return panels
+            .filter(panel => {
+                // If the panel has requiredRoles, check if the user has the role
+                if (panel.requiredRoles && !panel.requiredRoles.includes(roleId)) {
+                    return false;
+                }
+
+                // If the panel has children, check if at least one child is visible
+                if (panel.children && panel.children.length) {
+                    const visibleChildren = this.filterPanelsByRole(panel.children, roleId);
+                    return visibleChildren.length > 0;
+                }
+
+                return true;
+            })
+            .map(panel => {
+                // If the panel has children, filter them too
+                if (panel.children && panel.children.length) {
+                    return {
+                        ...panel,
+                        children: this.filterPanelsByRole(panel.children, roleId)
+                    };
+                }
+                return panel;
             });
     }
 
@@ -91,9 +151,5 @@ export class DrawerListingComponent implements OnInit, OnDestroy {
         }
 
         this.panelSelected.emit(panel);
-    }
-
-    getPanelInfo(id: string): any {
-        return this.panels.find((panel) => panel.id === id);
     }
 }
